@@ -49,6 +49,82 @@ git branch
 checkout to a branch
 git checkout qa
 it will switch to qa branch
+now we are in qa branch and make any changes and stage the changes and then push it to the qa branch
+
+git status
+git add new file name
+git comit -m "comment"
+git push -u origin qa
+
+Now checkout to master btanch
+git checkout master
+now you will see the chnages are not present in the master branch
+mow merge the changes in the master branch
+
+git merge qa
+
+now push the changes in the master branch
+git push -u origin master
+
+delete branch from the local
+
+git branch -d qa
+to delete the branch from origin 
+git push origin --delete qa
+
+Create Git Tagsa
+-------------------
+Checkout to the branch where we need to create the tags
+git checkout branchName
+
+command to check if any existing tags are there
+git tag
+
+create tag
+git tag V1.0
+
+to see the the tag details
+git show V1.0
+now push the tag for the release
+git push origin V1.0
+
+now go to the github you will see the tag V1.0 in the release. click on that you will see the V1.0 details .zip and tar.gz file
+Click on the Releases tab -> then click on the Create a new release
+Select the tag V1.0
+Provide the  Release Title and Release notes.
+Then click on the Push Release button.
+It will show you the Source Code (zip)
+It will show you the Source Code (tar.gz)
+
+Delete Tag from Local
+--------------------
+git tag -d v1.0
+or
+git tag --delete v1.0
+
+Delete tag from origin
+--------------------
+git push origin -d v1.0
+git push origin --delete v1.0
+
+Delete multiple tags
+--------------------
+Local
+git push origin -d v1.0 v1.1 v1.2
+
+Origin
+git push origin --delete v1.0 v1.1 v1.2
+
+Checkout tags
+---------------
+We cannot checkout tags, instead we can create a branch from tag and chekout that branch
+git checkout -b "branch name" "tag name"
+example: git checkout -b releaseBranchV1.0 V1.0
+
+Create Tags from past commit
+----------------------------
+git tag "tag name" "reference for commit"
+example: git tag v1.1 5fcdb03
 
 
 
