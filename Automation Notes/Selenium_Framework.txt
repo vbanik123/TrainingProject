@@ -1,0 +1,75 @@
+
+---------------------------------
+Selenium Hybrid Framework
+---------------------------------
+
+How to create a maven project in eclipse?
+Go to the package explorer panel at the left and right click select new --> Select Others -> in the wizard text box type maven, maven project option will be displayed, choose the maven project - > click next -> click next -> again click next -> now it will ask for the group id and artifact id I will tell you one thing here that group id and artifact id is nothing but group id is package name and artifact id is project name. So provide group id and artifact id and click finish. After that you will see the maven project will be created with the project name same what you have given name in the artifact id. Select that project and open it you will see the pom.xml there. In that pom.xml we will specify what jar files we need for the project. we will add all those dependencies.
+
+For example suppose we will add dependencies for selenium the it will be loke
+<dependencies>
+	<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-java</artifactId>
+		<version>3.0.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.testNG</groupId>
+		<artifactId>testNG</artifactId>
+		<version>6.10</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.15</version>
+	</dependency>
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	<dependency>
+		<groupId>com.relevantcodes</groupId>
+		<artifactId>extentreports</artifactId>
+		<version>2.40.2</version>
+	</dependency>
+</dependencies>
+
+The best way to get the dependencies is from google. so go to google and type what dependencies you need and take the latest version.
+
+Now we come to the point what is Hybrid framework. Hybrid framework is a combination of keyword driven and data driven framework and sometime people do integrate the page object model. Now the next question is why do we go for the Hybrid framework because sometime one type of framework is not enough to support the application we automate. it is possible that the application you automate is very dynamic in nature and sometime your application have both static and dynamic pages or forms for which you need data which you get from excel or database. When you have dynamic pages you need page object and for staticpages you mught have keywords. so to deal with such situation we need the mixtures of all the other frameworks which is in combination is called hybrid framework.
+
+Architecture of the Hybrid framework may vary from organization to other organization.
+
+When we created the maven project we noticed that two folders were created in our project i.e. src/main/java and src/test/java so what is that. Actually this two folder have all you java classes but the thing is which folder we use to have what type of java classes. For our framework we will keep all our config, data, report, screenshots, testBase, actions etc in the src/main/java folder and all page based functional classes like homePage, productDetailsPage etc in the src/test/java folder. It is good to follow this kind of practices while designing the framework.
+
+In the eclipse by default you were seeing these in the project explorer so just click on the navigator you will see the the packages as folder structure view. Now we will discuss about all these folders under src/main/java. First we the config folder will hold all configuration related files like properties file which can hold allproject configuration related information like urls, user info, environment info, database info etc. Next is data folder which will keep all the application or project related data in some external files like excel, xml etc. Now Report folder will hold all the reports when we run the scripts. The screenshot folder will hold all the screenshots captured during the test script run. Now the TestBase folder will hold the Base class which will have all the such important methods for the framework like load the property files read and write excel file, database connection and all the test class will extend thie base class. 
+
+So basically the base class will holds all the commaon methods and generic methods which will not be change and which will be reqired across the project. Now we come to UIAction folder. This folder contains the UIaction classes. For example suppose we take the retail application where we have different functionalities like add to cart. home page, product details page,checkout, shipping page, billing page,payement, place order etc which have different UI functionalities all these UI actions are placed in UIAction folder. Why we create all these action separately because all pages have different functions and different script developers have assigned different action classes to design the automation scripts parallely.
+
+Now we come to src/test/java where we design the details flow of each page like home, productDetailsPage, checkout page, cart page etc and call all the methods form UIaction page as required.
+
+Now we will go to in depth of the hybrid framework. So first we will will create a class TestBase under testBase folder which we have already mentioned above.
+
+Code snippet:
+
+package com.hybridFramework.testBase
+
+public class TestBase(){
+	WebDriver driver;
+	public void getBrowser(){
+		if(System.getProperty("os.name").contains("Window")){
+			if(browser.equalIgnoreCase("firefox")){
+				System.out.println(System.getProperty("user.dir"));
+				System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"/drivers/geckodriver.exe");
+				driver = new FirefoxDriver();
+			}
+			else if(browser.equalIgnoreCase("chrome")){
+				System.out.println(System.getProperty("user.dir"));
+				System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"/drivers/chromedriver.exe");
+				driver = new ChromeDriver();
+			}
+		}
+
+	}
+}

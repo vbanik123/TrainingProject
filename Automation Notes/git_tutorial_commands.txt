@@ -1,0 +1,55 @@
+github account
+user id - vbanik123
+email - vijay.k.banik@gmail.com
+
+repo name - TrainingProject
+repo url - https://github.com/vbanik123/TrainingProject.git
+
+Git command to check the existing version
+
+git --version
+
+right click in your project folder and click on the gitbash here
+
+git config --global user.email "vijay.k.banik@gmail.com"
+git config --global user.name "vbanik123"
+it will register the user email and user name
+git init
+it will create a .git folder inside your project folder
+create a file let's say ReadMe.txt
+
+git status
+it will say that the file is not stagged so next command is 
+git add ReadMe.txt
+now it will say the file is stagged and ready for the commit
+
+git commit -m "added file ReadMe.txt"
+
+add the remote repo url 
+git remote add origin https://github.com/vbanik123/TrainingProject.git
+git remote show origin
+
+*note our branch is master here
+
+git push -u origin master
+it will push your chnages in the master branch in the git hub
+
+git log
+it will show all the commit history
+every commit has a unique id which is called checksum
+
+git help
+
+create a branch
+git branch qa
+
+show all branch
+git branch
+
+checkout to a branch
+git checkout qa
+it will switch to qa branch
+
+
+
+ 

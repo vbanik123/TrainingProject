@@ -1,0 +1,6 @@
+1. Which Framework you worked on?
+Ans - Never say that you worked on 3-4 framework based on your years of experience. If your experience is say 4-5 yrs it is hardly you will get chance to work on 3-4 different types of framework. So better to say all those framework which you have a good hold or command and have a strong knowledge on it.
+Mentioned all those componenets which you have in your framework and explain it.
+
+2. What all chanllenges you faced while designing the framework?
+Ans - Identifying the proper structure of the framework. First we need to identify all those components which will fulfill the current requirement as well as future requirement. Always mentioned that your framework should have space to accomodate the futute requirements whether it is a technical or any business requirement demands. It will definetly leave a better impression to the interviewer. The other challenges are how we write our libraries classes, page object classes and listner classes ets and the synchronization among them. Always avoid hard codings. Always mentioned the source code management i.e source code repository like SVN, GIT repository or team 4J etc.

@@ -1,0 +1,529 @@
+How to declare an array?
+         int tests[];
+
+How to create an array?
+         tests= new int[5];
+
+How to declare 2d array?
+        int[][] matrix;
+
+How to create 2d array?
+        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
+
+How to Assign values to array
+        tests[0] = 25;
+        tests[1] = 30;
+        tests[2] = 50;
+        tests[3] = 10;
+        tests[4] = 5;
+
+How to  Declare, Create and Initialize Array on same line
+        int tests[] = { 25, 30, 50, 10, 5 };
+
+How to loop around an array - Enhanced for loop
+   
+ for (int mark : marks) {
+            System.out.println(mark);
+        }
+
+How to get Length of an array : Property length
+        int length = tests.length; 
+
+How to do Sorting An Array?
+        int rollnumbers[] = { 12, 5, 7, 9 };
+
+        Arrays.sort(rollnumbers);
+
+How to create String Array?
+        String[] daysWeek = { "Sunday", "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday" };
+
+How to remove a SubList from a List in Java ?
+
+Ans: List.subList(int fromIndex, int toIndex).clear()
+
+Difference between ArrayList and HashMap in Java?
+
+==>ArrayList implement List Interface while HashMap is an implementation of Map interface.
+==>ArrayList maintains the insertion order while HashMap does not maintain insertion order.
+==>ArrayList allows duplicate elements while HashMap doesn’t allow duplicate keys but does allow duplicate values.
+
+How to add element  to arrlst?
+Ans: arrlst.add(element); 
+
+Does list maintains insertion order?
+
+Ans: Both the ArrayList and LinkedList maintain the elements insertion order which means while displaying ArrayList and LinkedList elements the result set would be having the same order in which the elements got inserted into the List.
+
+How to add element at any index?
+Ans: arr.add(index,element);
+
+Difference between ArrayList and LinkedList?
+
+LinkedList can be iterated in reverse direction using descendingIterator() but to iterate over the ArrayList in reverse direction we need to write our own code
+
+Insertions and Deletions are faster in LinkedList as compared to ArrayList because there is no need of resizing array and copying content to new array if array gets full which makes adding into ArrayList of O(n) in worst case, while adding is O(1) operation in LinkedList in Java. so if we have more add or delete operations then we should go with Linked list.
+LinkedList has more memory overhead as each node holds both data and address of next and previous node but in ArrayList each index only holds actual object or we can say data.
+ArrayList internally uses a dynamic array while LinkedList internally uses a doubly linked list.
+Arraylist get method is faster than Linked list so fetching data or search operations is good in arraylist.
+
+How to get element or index in arrlst?
+Ans: arr.get(element);
+arr.get(index);
+
+How to remove element and index in arrlst?
+Ans: arr.remove(element); //returns boolean value
+arr.remove(index);//returns boolean value
+
+How to get duplicate elements in an array?Very Imp
+How to get the count of elements in an array? Duplicate Elements in array? Count of duplicate elements in array?Collection Interview Questions
+This is one of the mostly asked interview question.
+
+package CountElements;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+public class findduplicate {
+    public static void main (String args[]) {
+        String str2 = "findduplicateelementsinarray";
+        String[] ary = str2.split("");
+     ArrayList<String> list = new ArrayList<String>(Arrays.asList(ary));
+ //Set does not allow duplicate elements
+     Set<String> str1 = new HashSet<String>();{
+     for ( String str21 : list) {
+         if (str1.add(str21) == false) {
+             System.out.println(str21 + " occurs: " + Collections.frequency(list, str21) +": is the Duplicate Element");
+         }else if (Collections.frequency(list, str21) < 2) {
+             System.out.println(str21 + " occurs: " + Collections.frequency(list, str21));
+         }
+     }
+   
+}}
+}
+
+How to set a specified value to a specified index of arrlst?
+Ans: arr.set(index,element);
+
+Difference between an array and an ArrayList in Java?
+Ans:  The main difference between array and ArrayList is that the array is static and the arraylist is dynamic. We cannot change the size of the array once created, but ArrayList can increase its size automatically. 
+
+How to create folder with current timestamp in Java?
+Let's first create a class called helper() and add below two methods to it"
+- Create Folder
+- fetch Current timestamp
+
+public class helper(){
+
+/*
+
+	 * create folder
+
+*/
+
+	public static void CreateFolder(String path)  {
+
+		//File is a class inside java.io package
+
+		File file = new File(path);
+
+		if (!file.exists()) {
+
+			file.mkdir();//mkdir is used to create folder
+
+		} else
+
+			System.out.println("Folder already created");
+
+	}	
+
+	/*
+
+	 * Return current time stamp
+
+	 */
+
+	public static String Timestamp() {		
+		Date now = new Date();
+		String Timestamp = now.toString().replace(":", "-");
+		return Timestamp;
+
+	}
+
+}
+
+Now let's try to use the above two methods to create a folder in our project with timestamp:
+Let's assume our project name is "TestProject" and we want to create the folder with a timestamp inside our /htmlReports which is inside our project:
+String subfolderpath=System.getProperty("user.dir")+"/htmlReports/"+Helper.Timestamp(); //System.getProperty("user.dir") this will return project path and then we are appending folder name where we want to create the folder with timestamp
+		//create sub folder
+Helper.CreateFolder(subfolderpath);
+
+How to insert ABCD in the 3rd index of string abcdefgh ?
+StringBuilder sb1 = new StringBuilder("abcdefgh");
+// StringBuilder insert(int indext, String whatToInsert)
+System.out.println(sb1.insert(3, "ABCD"));// abcABCDdefgh
+
+What are superclass and subclass in Java?
+Superclass and Subclass
+
+• A superclass is also referred to as a parent class or a base class.
+
+• A subclass is a child class, an extended class, or a derived class.
+
+• A subclass inherits accessible data fields and methods from its superclass and may also add new data fields and methods.
+
+• Inheritance is a relationship. E.g.:- A pineapple is a fruit
+
+What is an Array of Objects?
+-----------------------------
+The array of Objects means it stores an array of objects.  Array stores values like String, integer, Boolean, etc but an Array of Objects stores objects which means objects are stored as elements of an array. An array of Objects is not the object itself that is stored in the array but the reference of the object.
+In an array of objects, we need to initialize each element of the array i.e. each object/object reference needs to be initialized.
+
+Two ways to initialize the array of objects:
+
+By using the constructors
+By using a separate member method
+By using the constructors is the most used one and we will try to explore the same
+//Declaring an array of person and Allocating memory for 3 objects of type person
+                Person[] persons = new Person[3];
+
+// to assign objects we would need to create, Initializing the element of the array
+		
+                persons[0] = new Person(1, "test1");
+		persons[1] = new Person(2, "test2");
+		persons[2] = new Person(3, "test3");
+
+
+// Creating a person class with id and name as a attributes
+class Person {
+	int id;
+	String name;
+
+  // person class constructor
+    Person(int id, String name)
+    {
+        this.id = id;
+        this.name = name;
+    }
+}
+
+Latest 60 Java Interview Questions And Answers Pdf
+--------------------------------------------------
+1. What is the right data type to represent a price in Java?
+Answer: BigDecimal, if memory is not a concern and Performance, is not critical, otherwise double with predefined precision.
+
+2. What is a class in Java?
+Answer: Java encapsulates the codes in various classes which define new data types. These new data types are used to create objects.
+
+3. What is a JVM?
+Answer: JVM is Java Virtual Machine which is a run time environment for the compiled java class files.
+
+4. Explain method overloading?
+Answer: When a Java program contains more than one methods with the same name but different properties, then it is called method overloading.
+
+5. Does Java support multiple inheritances?
+Answer: Java doesn’t support multiple inheritances.
+
+6. What restrictions are placed on the location of a package statement within a source code file?
+Answer: A package statement must appear as the first line in a source code file (eliminating blank lines and comments).
+
+Read Out: Common Interview Mistakes
+
+7. What is a transient variable?
+Answer: A transient variable is a variable that may not be serialized.
+
+8. Is null a keyword?
+Answer: No, the null is not a keyword.
+
+9. What’s new with the stop(), suspend() and resume() methods in JDK 1.2 ?
+Answer: These methods have been deprecated in JDK 1.2.
+
+10. What method is used to specify a container’s layout?
+Answer: The setLayout() method is used to specify a container’s layout.
+
+11. What is the immediate superclass of the Applet class?
+Answer: The Panel class is the immediate superclass of the Applet class.
+
+12. Can we rethrow the same exception from catch handler?
+Answer: Yes, we can rethrow the same exception from our catch handler. If we want to rethrow checked exception
+from a catch block we need to declare that exception.
+
+13. what value is a variable of the String type automatically initialized?
+Answer: The default value of a String type is null.
+
+14. When a thread blocks on I/O, what state does it enter?
+Answer: When it blocks on I/O, A thread enters the waiting state.
+
+15. Which containers use a Flow Layout as their default layout?
+Answer: The Panel and Applet classes use the Flow Layout as their default layout.
+
+16. What modifiers may be used with an inner class that is a member of an outer class?
+Answer: A (non-local) inner class may be declared as public, protected, private, static, final, or abstract.
+
+17. Which java. util classes and interfaces support event handling?
+Answer: The Event Object class and the Event Listener interface support event processing. ( oracle apex training online  )
+
+18. What is the Vector class?
+Answer: The term Vector class provides the ability to implement a growable array of objects.
+
+19. What is the difference between the >> and >>> operators?
+Answer: The >> operator carries the sign bit when shifting right while the >>> zero-fills bits that have been shifted out.
+
+20. What is a native method?
+Answer: A native method is a method that is applied in a language other than Java.
+
+21. What value does read Line() return when it has reached the end of a file?
+Answer:
+The readLine() method returns null when it has reached the end of a file.
+
+22. What is clipping?
+Answer: Clipping is the process of confining paint operations to a limited area or shape.
+
+23. Can a for statement loop indefinitely?
+Answer: Yes, a for statement can loop indefinitely. For example, consider the following: for(;;)
+
+24. Explain Java Coding standards for Methods?
+Answer:
+
+1) Method names should start with small letters.
+2) Method names are usually verbs
+3) If a method contains multiple words, every inner word should start with an uppercase letter.
+Ex : toString()
+4) Method name must be combination of verb and noun
+Ex : getCarName(),getCarNumber()
+
+25. Explain Java Coding Standards for Constants ?
+Answer:
+Constants in java are created using static and final keywords.
+1) Constants contain only uppercase letters.
+2) If the constant name is a combination of two words it should be separated by an underscore.
+
+3) Constant names are usually nouns.
+Ex:MAX_VALUE, MIN_VALUE, MAX_PRIORITY, MIN_PRIORITY
+
+26. What is synchronization and why is it important?
+Answer: The term synchronization is the ability to control the access of multiple threads to shared resources. And it is important because, without it, it is not possible for one thread to modify a shared object while another thread is in the process of using or updating that object’s value. This often leads to major errors.
+
+27. Explain Java Coding Standards for variables?
+Answer:
+1) Variable names should start with small letters.
+2) Variable names should be nouns
+3) Short meaningful names are recommended.
+4) If there are multiple words every inner world should start with Uppercase character.
+Ex : string,value,empName,MEP salary
+
+28. Name three Component subclasses that support painting?
+Answer:
+The Canvas, Frame, Panel, and Applet classes support painting.
+
+29. What is the difference between JDK and JVM?
+Answer: we’re presenting the difference between JDK and JVM in tabular format, take a look…
+
+JDK JVM
+Full-Form: Java Development Kit Full Form: Java Virtual Machine
+For Development Purpose
+
+To execute the java programs
+It provides all the tools, executables and binaries required to compile, debug and execute a Java Program The execution part is handled by JVM to provide machine independence.
+
+30. Why Java doesn’t support multiple inheritances?
+Answer: Because of “Diamond Problem”, Java doesn’t support multiple inheritances in classes.
+
+31. Why Java is not a pure Object Oriented language?
+Answer: Java supports primitive types such as int, byte, short, long, etc that why it is not said to be a pure object-oriented language.
+
+32. What are the access modifiers?
+Answer: Java provides three access controls such as public, private and protected access modifier. When none of these are used, it’s called default access modifier.
+
+33. Can we overload the main method?
+Answer:
+Yes, we can overload the main method with syntax as public static void main(String args[]).
+
+34. What is the method in java?
+Answer: It contains the executable body that can be applied to the specific object of the class.
+The method includes method name, parameters or arguments and return type and a body of executable code.
+Syntax : type methodName(Argument List){
+
+ex: public float add(int a, int b, int c)
+methods can have multiple arguments. Separate with commas when we have multiple arguments.
+thrown in the method are instances of their subclass.
+
+35. Can we use catch statement for checked exceptions?
+Answer: If there is no chance of raising an exception in our code then we can’t declare catch block for handling
+checked exceptions. This raises a compile-time error if we try to handle checked exceptions when there is
+no possibility of causing an exception.
+
+36. Explain a situation where finally block will not be executed?
+Answer: Finally, the block will not be executed whenever JVM shutdowns. If we use system.exit(0) in try statement
+finally block if present will not be executed.
+
+37. Explain about the main() method in java?
+Answer: The main () method is the starting point of execution for all java applications.
+public static void main(String[] args) {}
+String args[] are an array of string objects we need to pass from command line arguments.
+Every Java application must have at least one main method. company
+
+38. What is constructor in java?
+Answer: A constructor is a special method used to initialize objects in the java.
+we use constructors to initialize all variables in the class when an object is created. As and when an object
+is created it is initialized automatically with the help of constructor in java.
+We have two types of constructors
+Default Constructor
+Parameterized Constructor
+
+39. How can we find the actual size of an object on the heap?
+Answer: In Java, there is no way to find out the actual size of an object on the heap.
+
+40. In how many ways we can do synchronization in java?
+Answer:
+There are two ways to do synchronization in java:
+1) Synchronized methods
+2) Synchronized blocks
+To do synchronization we use the synchronized keyword.
+
+41. Explain about Automatic type conversion in java?
+Answer:
+Java automatic type conversion is done if the following conditions are met:
+1) When two types are compatible
+Ex: int, float
+int can be assigned directly to float variable.
+2) Destination type is larger than source type.
+Ex: int, long.
+
+Int can be assigned directly to long .Automatic type conversion takes place if int is assigned to long
+because long is larger datatype than int.
+Widening Conversion comes under Automatic type conversion.
+
+42. In how many ways we can do exception handling in java?
+Answer:
+We can handle exceptions in either of the two ways :
+1) By specifying a try-catch block where we can catch the exception.
+2) Declaring a method with throws clause.
+
+43. What does null mean in java?
+Answer:
+When a reference variable doesn’t point to any value it is assigned null.
+Example: Employee employee;
+In the above example employee object is not instantiate so it is pointed nowhere.
+
+44. Can we define a package statement after the import statement in java?
+Answer: We can’t define a package statement after the import statement in java. a package statement must be the first statement in the source file. We can have commented before the package statement.
+
+45. Explain where variables are created in memory?
+Answer: When we declare variables are created in the stack. So when the variable is out of scope those variables get garbage collected. 
+
+46. When do we use synchronized blocks and advantages of using synchronized blocks?
+Answer: If very few lines of code require synchronization then it is recommended to use synchronized blocks. The main advantage of synchronized blocks over synchronized methods is it reduces the waiting time of threads and improves performance of the system.
+
+47. What is the difference between access specifiers and access modifiers in java?
+Answer: In C++ we have access specifiers as public, private, protected and default and access modifiers as static, final. But there is no such division of access specifiers and access modifiers in java. In Java, we have access to modifiers and nonaccess modifiers.
+Access Modifiers: public, private, protected, default
+Non Access Modifiers: abstract, final, strip.
+
+48. What access modifiers can be used for class?
+Answer: We can use only two access modifiers for class public and default.
+public: A class with a public modifier can be visible
+
+1) In the same class
+2) In the same package subclass
+3) In the same package nonsubclass
+4) In the different package subclass
+5) In the different package nonsubclass.
+
+default: A class with default modifier can be accessed
+
+1) In the same class
+2) In the same package subclass
+3) In the same package nonsubclass
+4) In the different package subclass
+5) In the different package nonsubclass. ( )
+
+49. Explain about abstract classes in java?
+Answer: Sometimes we may come across a situation where we cannot provide implementation to all the methods in a class. We want to leave the implementation to a class that extends it. In such a case, we declare a class as abstract. To make a class abstract we use keyword abstract. Any class that contains one or more abstract methods is declared as abstract. If we don’t declare a class as abstract which contains abstract
+methods we get a compile-time error. We get the following error. “The type must be an abstract class to define abstract methods.” Signature; abstract class. 
+
+For example, if we take a vehicle class we cannot provide implementation to it because there may be two-wheelers, four-wheelers, etc. At that moment we make vehicle class abstract. All the common features of vehicles are declared as abstract methods in vehicle class. Any class which extends the vehicle will provide its method implementation. It’s the responsibility of subclass to provide the implementation.
+
+The important features of abstract classes are:
+
+1) Abstract classes cannot be instantiated.
+2) An abstract class contains abstract methods, concrete methods or both.
+3) Any class which extends abstract class must override all methods of an abstract class.
+4) An abstract class can contain either 0 or more abstract methods.
+
+Though we cannot instantiate abstract classes we can create object references. Through superclass
+references, we can point to subclass.
+
+50. Can we create a constructor in abstract class?
+Answer: We can create a constructor in the abstract class, it doesn’t give any compilation error. But when we cannot
+instantiate class there is no use in creating a constructor for abstract class.
+
+51. What are abstract methods in java?
+Answer: An abstract method is a method which doesn’t have anybody. An abstract method is declared with
+keyword abstract and semicolon in place of the method body.
+Signature : public abstract void ();
+Ex : public abstract void get details();
+It is the responsibility of subclass to provide implementation to an abstract method defined in the abstract class.
+
+52. State some situations where exceptions may arise in java?
+Answer:
+1) Accessing an element that does not exist in the array.
+2) Invalid conversion of number to string and string to a number.
+(NumberFormatException)
+3) The invalid casting of class
+(Class cast Exception)
+4) Trying to create an object for interface or abstract class
+(Instantiation Exception)
+
+53. What is an exception in java?
+Answer:
+In java, an exception is an object. Exceptions are created when abnormal situations arise in our program. Exceptions can be created by JVM or by our application code. All Exception classes are defined in java.lang. In other words, we can say Exception as a run time error.
+
+54. What is an error in Java?
+Answer: Error is the subclass of Throwable class in java. When errors are caused by our program we call that as Exception, but some times exceptions are caused due to some environmental issues such as running out of memory. In such cases, we can’t handle the exceptions. Exceptions which cannot be recovered are called as errors in java.
+Ex: Out of memory issues.
+
+55. What are the advantages of Exception handling in java?
+Answer:
+1) Separating normal code from exception handling code to avoid abnormal termination of the program.
+2) Categorizing into different types of Exceptions so that rather than handling all exceptions with
+Exception root class we can handle with specific exceptions. It is recommended to handle exceptions with
+specific Exception instead of handling with Exception root class.
+3) Call stack mechanism: If a method throws an exception and it is not handled immediately, then that
+exception is propagated or thrown to the caller of that method. This propagation continues till it finds an
+appropriate exception handler, if it finds handler it would be handled otherwise program terminates
+Abruptly.
+
+56. In how many ways we can create threads in java?
+Answer:
+We can create threads in java by any of the two ways :
+1) By extending Thread class
+2) By implementing the Runnable interface.
+
+57. Explain creating threads by implementing Runnable class?
+Answer: This is the first and foremost way to create threads. By implementing the runnable interface and implementing
+the run() method we can create a new thread.
+Method signature : public void run()
+Run is the starting point for execution for another thread within our program.
+Example :
+public class MyClass implements Runnable {
+@Override
+public void run()
+
+58. When do we use synchronized methods in java?
+Answer: If multiple threads try to access a method where the method can manipulate the state of the object, in such a scenario we can declare a method as synchronized.
+
+59. Explain the importance of finally block in java?
+Answer: Finally block is used for cleaning up of resources such as closing connections, sockets, etc. if try block executes with no exceptions then finally is called after try block without executing catch block. If there is an exception thrown in try block finally block executes immediately after the catch block. If an exception is thrown, finally block will be executed even if the no catch block handles the exception.
+
+60. Can we catch more than one exception in a single catch block?
+Answer: From Java 7, we can catch more than one exception with a single catch block. This type of handling reduces
+the code duplication.
+Note: When we catch more than one exception in a single catch block, catch parameter is implicitly final.
+We cannot assign any value to catch parameter.
+Ex : catch(ArrayIndexOutOfBoundsException || ArithmeticException e)
+
+In the above example, e is final we cannot assign any value or modify e in the catch statement.

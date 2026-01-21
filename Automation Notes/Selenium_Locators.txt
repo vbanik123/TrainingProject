@@ -1,0 +1,341 @@
+xpath
+//a[@title='selenium projects']
+css
+a[title='selenium projects']
+-------------------------------
+<a href="/download/" title="Get Selenium">Download</a>
+xpath
+//a[@title='Get Selenium']
+//a[contains(text(),'Download')]
+-------------------------------------
+
+<li id="menu_documentation">
+<a href="/docs/" title="Technical references and guides">Documentation</a></li>
+xpath
+//li[@id='menu_documentation']/a
+//a[@title='Technical references and guides']
+//a[contains(text(),'Documentation')]
+CSS
+li[id='menu_documentation']>a
+
+XPATH
+//div[@id='mBody']/div[2]/h2
+CSS
+#mainContent>h2 ---> but I am getting 3 such elements. how to resolve it see below
+#mainContent>:nth-child(1)
+Now come from parent div
+#mBody>:nth-child(3)>:nth-child(1)
+----------------------------
+
+<input type="text" id="q" name="q" accesskey="s" size="30">
+XPATH
+//input[@id='q' and @name='q'] ---- If we have used more than one attribute then we can write in the way
+CSS
+input[id='q'][name='q'] ----- for CSS If we have used more than one attribute then we can write in the way
+
+---------------------------------
+XPATH
+//table[@id='choice']/tbody/tr/td[1]/center/h3
+//h3[contains(text(),'Selenium WebDriver')]
+CSS
+table[id='choice']>tbody>tr>td>center>h3
+#choice>tbody>tr>td>center>h3 --- this is showing 2 elements so we can use the below
+table[id='choice']>tbody>tr>td:nth-child(1)>center>h3:nth-child(1)
+#choice>tbody>tr>td:nth-child(1)>center>h3:nth-child(1)
+
+----------------------------------------
+Handling Dynamic Object's properties
+----------------------------------------
+starts-with
+----------
+XPATH
+//input[starts-with(@id,'u')]
+CSS
+input[id^='u']
+
+ends-with
+XPATH
+//input[ends-with(@id,'h')]
+//input[contains(@id,'h')]
+
+CSS
+input[id$='h')]
+
+---- Ends with only works with XPATH 2.0 and most of the browsers support only XPATH 1.0 so it may work or may not work. ---------
+
++---------------+
+     Sibling
++---------------+
+* Following
+* Preceding
+
+in chrome we can write it in console under developer option
+* below code is for facebook login page.
+
+
+Following Sibling
+$x("//select[@id='day']/following-sibling::*")
+here in the above line of code we are seeing the xpath for day select option also it is followed by following-sibling::* which means with it will give all the following siblings of Day.
+$x("//select[@id='day']/following-sibling::select[1]") - it will give the first select after day which is month
+$x("//select[@id='day']/following-sibling::select[2]") - it will give the second select after day which is year
+
+Preceding Sibling
+$x("//select[@id='year']/preceding-sibling::*")
+here in the above line of code we are seeing the xpath for year select option also it is followed by preceding-sibling::* which means with it will give all the preceding siblings of Year
+$x("//select[@id='year']/preceding-sibling::select[1]") - it will give the first select after year which is month
+$x("//select[@id='year']/preceding-sibling::select[2]") - it will give the secondselect after year which is Day
+
+child,descendent
+----------------
+$x("//div[@id='reg_form_box']/child::div[1]/child::div[1]/descendant::div[1]")
+
+--------------------------------------------------------------------------------------
+//----- Website to practice selenium --- http://automationpractice.com/index.php
+--------------------------------------------------------------------------------------
+
+CSS Locator
+--------------------
+<form action="http://automationpractice.com/index.php?controller=authentication" method="post" id="create-account_form" class="box">
+<h3 class="page-subheading">Create an account</h3>
+To identify the h3 here in the above code
+#create-account_form>.page-subheading
+
+<input type="text" class="is_required validate account_input form-control" data-validate="isEmail" id="email_create" name="email_create" value="">
+
+We can use the css locatore for class above is .is_required.validate.account_input.form-control - if we see the class attribute is_required validate account_input form-control has space between so we put . in all space i.e. -  .is_required.validate.account_input.form-control
+as it is showing 3 founds we can make it more unique by
+[name='email'].is_required.validate.account_input.form-control
+
+<a href="http://automationpractice.com/index.php?controller=password" title="Recover your forgotten password" rel="nofollow">Forgot your password?</a>
+
+a[title$='password'] -- Ends with
+a[title^='Recover your'] -- Starts with
+
+This is also works
+------------------
+[title$='password'] -- Ends with
+[title^='Recover your'] -- Starts with
+
+This is also works as it is just looks for the matching patterns. This is contains(*) in css selector.
+[title*='forgotten password'] - contains
+[title*='Recover your'] - contains
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+CSS Selectors Locator:
+-----------------------
+There is a debate on the performance of CSS Locator and XPath locator and the debate on the performance of CSS and XPath locator is out of scope of this post. Most of the automation testers believe that using CSS selectors makes the execution of script faster compared to XPath locator. CSS Selector locator is always the best way to locate elements on the page. CSS is always same irrespective of browsers. In this post, I will show you how to find element locators using CSS without using any tools like Firebug or Firepath.
+
+Following are some of the mainly used formats of CSS Selectors.
+
+Tag and ID
+Tag and Class
+Tag and Attribute
+Tag, Class, and Attribute
+Sub-String Matches
+Starts With (^)
+Ends With ($)
+Contains (*)
+Child Elements
+Direct Child
+Sub-child
+nth-child
+
+Tag and ID:
+-------------
+CSS ID Selector.
+Syntax:
+css=tag#id
+Open Mozilla Firefox and navigate to Gmail application.
+Open Firebug and inspect the Enter your email input box. Take a note of its Tag and ID. Follow the below screenshot to do so.
+Copy the below mentioned script and execute in your system.
+<div> 
+<label class=”hidden-label” for=”Email”> Enter your email</label> 
+<input id=”Email” type=”email” autofocus=”” placeholder=”Enter your email” name=”Email” spellcheck=”false” value=””> <input id=”Passwd-hidden” class=”hidden” type=”password” spellcheck=”false”> 
+</div>
+Value to be added in the By.cssSelector method:
+css=input#Email
+package seleniumTutorial; 
+import org.openqa.selenium.By; 
+import org.openqa.selenium.WebDriver; 
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class Locators { 
+       public static void main (String [] args){ 
+       WebDriver driver = new FirefoxDriver(); 
+       driver.get("https://www.gmail.com"); 
+       // Here Tag = input and Id = Email 
+       driver.findElement(By.cssSelector("input#Email")).sendKeys("Software Testing Material"); 
+       } 
+}
+
+Tag and Class:
+-----------------
+If multiple elements have the same HTML tag and class, then the first one will be recognized.
+
+Syntax:
+css=tag.class
+<td>
+<input id=”email“ class=”inputtext“ type=”email“ tabindex=”1“ value=”” name=”email“>
+</td>
+css=input.inputtext
+package seleniumTutorial; 
+import org.openqa.selenium.By; 
+import org.openqa.selenium.WebDriver; 
+import org.openqa.selenium.firefox.FirefoxDriver; 
+public class Locators { 
+       public static void main (String [] args){ 
+       WebDriver driver = new FirefoxDriver(); 
+       driver.get("https://www.facebook.com/"); 
+       // Here Tag = input and Class = email 
+       driver.findElement(By.cssSelector("input.inputtext")).sendKeys("Software Testing Material"); 
+       } 
+}
+
+Tag and Attribute:
+-------------------
+If multiple elements have the same HTML tag and attribute, then the first one will be recognized. It acts in the same way of locating elements using CSS selectors with the same tag and class.
+
+Syntax:
+css=tag[attribute=value]
+<div> 
+<label class=”hidden-label“ for=”Email“> Enter your email</label>
+<input id=”Email“ type=”email“ autofocus=”” placeholder=”Enter your email“ name=”Email“ spellcheck=”false“ value=””> <input id=”Passwd-hidden“ class=”hidden“ type=”password“ spellcheck=”false“> 
+</div>
+css=input[name=Email]
+package seleniumTutorial; 
+import org.openqa.selenium.By; 
+import org.openqa.selenium.WebDriver; 
+import org.openqa.selenium.firefox.FirefoxDriver; 
+public class Locators { 
+      public static void main (String [] args){ 
+      WebDriver driver = new FirefoxDriver(); 
+      driver.get("https://www.gmail.com"); 
+      // Here Tag = input and Id = Email 
+      driver.findElement(By.cssSelector("input[name=Email]")).sendKeys("Software Testing Material"); 
+      } 
+}
+
+Tag, Class And Attribute:
+=========================
+Syntax:
+css=tag.class[attribute=value]
+<td>
+<input id="email" class="inputtext" type="email" tabindex="1" value="" name="email">
+</td>
+css=input.inputtext[name=email]
+package seleniumTutorial; 
+import org.openqa.selenium.By; 
+import org.openqa.selenium.WebDriver; 
+import org.openqa.selenium.firefox.FirefoxDriver; 
+public class Locators { 
+      public static void main (String [] args){ 
+      WebDriver driver = new FirefoxDriver(); 
+      driver.get("https://www.facebook.com/"); 
+      // Here Tag = input and Class = email 
+      driver.findElement(By.cssSelector("input.inputtext[name=email]")).sendKeys("Software Testing Material"); 
+      } 
+}
+
+SUB-STRING MATCHES:
+====================
+CSS in Selenium has an interesting feature of allowing partial string matches using ^, $, and *.
+Have a look on the below mentioned HTML.
+<input="Employee_ID_001">
+Starts with (^):
+------------------
+To select the element, we would use ^ which means ‘starts with’
+css=<HTML tag><[attribute^=prefix of the string]>
+Value to be added in the By.cssSelector method:
+css=input[id^='Em']
+Add the below step in the script to find the element and write a text as “hi”
+driver.findElement(By.cssSelector("input[id^='Em']")).sendKeys("hi");
+
+Ends with ($):
+------------------
+To select the element, we would use $ which means ‘ends with’
+Syntax: css=<HTML tag><[attribute$=suffix of the string]>
+Value to be added in the By.cssSelector method:
+css=input[id$='001']
+Add the below step in the script to find the element and write a text as “hi”
+driver.findElement(By.cssSelector("input[id$='001']")).sendKeys("hi");
+
+Contains (*): 
+--------------
+To select the element, we would use * which means ‘sub-string’
+Syntax:css=<HTML tag><[attribute*=sub string]>
+Value to be added in the By.cssSelector method:
+css=input[id*='id']
+Add the below step in the script to find the element and write a text as “hi”
+driver.findElement(By.cssSelector("input[id*='id']")).sendKeys("hi");
+
+Also we can use ‘contains()’:
+------------------------------
+driver.findElement(By.cssSelector("input:contains('id')")).sendKeys("hi");
+
+Locating Child Elements(Direct Child):
+---------------------------------------
+<div id="buttonDiv" class="small">
+<button id="submitButton" type="button" class="btn">Submit</button>
+</div>
+Syntax: parentLocator>childLocator
+CSS Locator: div#buttonDiv>button
+Explanation: ‘div#buttonDiv>button’ will first go to div element with id ‘buttonDiv’ and then select its child element – ‘button’
+
+Locating elements inside other elements (child or sub-child):
+---------------------------------------------------------------
+Syntax: parentLocator>locator1 locator2
+CSS Locator: div#buttonDiv button
+Explanation: ‘div#buttonDiv button’ will first go to div element with id ‘buttonDiv’ and then select ‘button’ element inside it (which may be its child or sub child)
+
+Locating nth Child:
+--------------------
+To find nth-child css.
+<ul id="automation">
+   <li>Selenium</li>
+   <li>QTP</li>
+   <li>Sikuli</li>
+</ul>
+To locate the element with text ‘QTP’, we have to use “nth-of-type”
+css="ul#automation li:nth-of-type(2)"
+Similarly, To select the last child element, i.e. ‘Sikuli’, we can use
+css="ul#automation li:last-child"
+
+XPath Locator:
+================
+XPath is designed to allow the navigation of XML documents, with the purpose of selecting individual elements, attributes, or some other part of an XML document for specific processing. XPath produces reliable locators but in performance wise it is slower (especially in IE older versions) compared to CSS Selector.
+
+
+
+
+-----------------------------------------------------------------------------------
+-------------------------TestNG Interview questions ----------------------
+-----------------------------------------------------------------------------------
+
+@BeforeMethod - it is executed before every test case in the class. Suppose we have to Test case in the class so before method will be executed before first test case as well before second test case.
+
+@AfetrMethod - it is executed after every test case in the class. Suppose we have to Test case in the class so after method will be executed after first test case as well afaater second test case.
+
+@BeforeClass - BeforeClass will be excuted before any test. It is executed only once per class.
+@AfterClass - AfterClass will be excuted after any test. It is executed only once per class.
+
+@BeforeTest - BeforeTest will executed before any test infact it executed even before BeforeClass. It is executed only once per class.
+@AfterTest - AfterTest will executed after any test infact it executed even after AfterClass. It is executed only once per class.
+
+@BeforeSuite - When the execution starts the first one which is triggered is the BeforeSuite. It is execute before every thing which executed in the class ot test. Its is executed BeforeTest, BeforeClass and BeforeMethod.
+@AfterSuite - When the execution starts the last one which is triggered is the AfterSuite. It is execute after every thing which executed in the class ot test. Its is executed AfterTest, AfterClass and AfterMethod.
+
+@Test(enable=false) - This one feature where we can descide whether we need to enable the test or not. When it is false it will not execute the test and when true it will execute the test.
+
+@Test(groups = {"smoke","regression"}) - group is a feature in the test NG where we can group the test cases and tell them during the execution which all test cases will run for regression and sanity.
+@Test(groups = {"smoke"}) - In this scenario it will only consider the sanity pack.
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,162 @@
+DependsOnMethod
+----------------
+
+package testNGTest;
+
+import org.testng.annotations.Test;
+import org.testng.Assert;
+
+public class DependsOnTest(){
+	
+	@Test
+	public void login(){
+		System.out.println("Login Successfull.....");
+		Assert.assertTrue(false);		
+	}
+	
+	@Test(dependsOnMethods={"login"})
+	public void test(){
+		System.out.println("Depends On Methods Test.....");
+	}
+	
+	@Test(dependsOnMethods={"login"})
+	public void Logout(){
+		System.out.println("Logout Successfull.....");
+	}
+}
+
+When we will run the script it will show the result like this
+Total test run: 3, Failure: 1, Skips: 2.
+Now we need to discuss why this happened, coz we intentionally failed one test here i.e. Login. So when login method failed it will restrict the other two test to run as the other two test are depends on method login. I hope you guys understand how DependsOnMethos work.
+
+------------
+Parameters
+------------
+
+package testNGTest;
+
+import org.testng.annotations.parameters;
+import org.testng.annotations.Test;
+
+public class  ParameterInTestNG(){
+
+	@Test
+	@Parameter({"userName","password"})
+	public void testLogin(@Optional("userNameOptional")String usrName,@Optional("passwordOptional")String paswrd){
+		System.out.println("User Name is ::"+usrName+" and Passwod is :: "+paswrd);
+	}
+
+}
+
+If we run the above class the result will be like 
+User Name is :: userNameOptional and Passwod is :: passwordOptional
+
+Now the point is why it has taken the userNameOptional and passwordOptional. Well we will discuss it here. If you see the parameters in the testLogin method we have mentioned @Optional, what is it means. @Optional annotation holds a optional value or parameter in case if we donnot provide the paraameter in the testNG.xml in that case it will take this Optional value. The benifit of it, is if we missed to mention the parameter in the testNG.xml in that case instead of throwing exception it will take the optional value.
+
+In the testNG.xml we will provide the parameter.
+
+<parameter name="userName" value="user123">
+<parameter name="password" value="password123">
+<test name="ParameterInTestNG">
+	<class name = "testNG.ParameterInTestNG"></class>
+</test>
+
+Now if we run the class ParameterInTestNG the result will be as below
+User Name is :: user123 and Passwod is :: password123
+
+Note :: If you have two or more test in testNG.xml with the same name it will throw exception during run time.
+When you have same class mentioned in the same test in testNG.xml then only one class will be executed not all duplicate class .
+
+-------------------------
+DataProviderTest
+-------------------------
+package testNGTest;
+
+import org.testng.annotations.Test;
+
+public class DataProviderTest(){
+
+	@DataProvider(name="data")
+	public Object[][] dataProviderTest(){
+		return new Object[][]{{"userName1,"password1"},{"userName2,"password2"},{"userName3,"password3"}}
+	}
+	
+	@Test(dataProvider="data")
+	public void test(String usrNM, String psWrd){
+		System.out.println("userName :: "+usrNM+" passwod ::"+psWrd);
+	}
+
+}
+When We will run the code it will run three times.
+Result ::
+userName :: userName1 passwod :: password1
+userName :: userName2 passwod :: password2
+userName :: userName3 passwod :: password3
+
+package testNGTest;
+import org.testng.annotations.Test;
+
+public void EnableAndDisableTest(){
+
+	@Test(enable=true, description="I am login test with valid data")
+	public void test(){
+		Syste.out.println("test()");
+	}
+	
+	@Test(enable=false, description="I am login test with valid data")
+	public void test1(){
+		Syste.out.println("test1()");
+	}
+
+}
+
+<test name="EnableAndDisableTest">
+	<class name = "testNG.EnableAndDisableTest"></class>
+</test>
+
+If enable is false it will skill the test and if it is true it will get executed. Description will give the description as mentioned in the test in the report section. IF you go to the test result html page you will see the description there.
+
+------------------
+@DataProvide
+------------------
+
+package DataProviderTest;
+
+import org.testng.annotations.DataProvider;
+
+public class TestDataProvider(){
+
+	@DataProvider(name="login")
+	public Object[][] Login(){
+		Object[][] result = new Object[5][2];
+		 
+		 result[0][0] = "Admin";
+		 result[0][1] = "Manager";
+		 
+		 result[1][0] = "Admin";
+		 result[1][1] = "Manager";
+		 
+		 result[2][0] = "Admin";
+		 result[2][1] = "Manager";
+		 
+		 result[3][0] = "Admin";
+		 result[3][1] = "Manager";
+		 
+		 result[4][0] = "Admin";
+		 result[4][1] = "Manager";
+	}
+	
+	@Test(dataProvider="login")
+	public void testLogin(String name, String password){
+		System.out.println("Name :: "+name
+		System.out.println("Password :: "+password);
+	}
+
+}
+
+Note : Here each row has two column and if we give only one parameter in the testLogin method say String Name and exclude String password and when we run it will through an exception. because we have provided two column in the dataprovider and for that we need to provide two parameter in the testLogin method.
+
+
+
+
+

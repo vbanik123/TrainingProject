@@ -1,0 +1,39 @@
+1. What is Agile Testing?
+-------------------------
+Ans  - Agile testing is a software testing practice that follows the principles of an agile software development. It is an iterative software development methodology where requirements keep changing as per the customer needs.  Testing is done in parallel to the development of an iterative model. Test team receives frequent code changes from the development team for testing an application.
+
+2. What is Agile Manifesto?
+----------------------------
+Ans - Agile manifesto defines 4 key points:
+
+i. Individuals and interactions over process and tools
+ii. Working software over comprehensive documentation
+iii. Customer collaboration over contract negotiation
+iv. Responding to change over following a plan
+
+3. What are the principles of Agile Software Development?
+----------------------------------------------------------
+1. Highest priority is to satisfy the customer through early and continuous delivery of business valuable software
+2. Welcome changing requirements, even late in development
+3. Deliver working software frequently
+4. Business people and developers must work together with transparency on daily basis throughout the project
+5. Build projects around motivated individuals
+6. The best form of communication is to do face-to-face conversation
+7. Working software is the primary measure of progress
+8. Able to maintain a constant pace
+9. Continuous attention to technical excellence
+10. Simplicity – the art of maximizing the amount of work not done – is essential
+11. Self-organizing teams
+12. At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly
+
+4. What are the main roles in Scrum?
+------------------------------------
+Scrum consists of three main roles:
+
+Product Owner: Product Owner usually represents the Client and acts as a point of contact from Client side. The one who prioritizes the list of Product Backlogs which Scrum Team should finish and release.
+
+Scrum Master: Scrum Master acts as a facilitator to the Scrum Development Team. Clarifies the queries and organizes the team from distractions and teach the team how to use scrum and also concentrates on Return on Investment (ROI). Responsible for managing the sprint.
+
+Scrum Development Team: Developer’s, QA’s. Who develops the product. Scrum development team decides the effort estimation to complete a Product Backlog Item.
+
+Scrum Team: A cross-functional, self-organizing group of dedicated people (Group of Product Owner, Business Analyst, Developer’s and QA’s). Recommended size of a scrum team is 7 plus or minus 2 (i.e, between 5 to 9 members in a team).

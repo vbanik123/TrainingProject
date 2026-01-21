@@ -1,0 +1,34 @@
+Test Environment Management (TEM)
+Test Environment Management deals with the maintenance and upkeep of the test bed.
+
+List of activities by the Test environment management function include,
+Maintenance of a central repository with all the updated version of test environments.
+Test environment management as per the test team demands.
+As per the new requirements creating new environments
+Monitoring of the environments
+Updating/deleting outdated test-environments
+Investigation of issues on the environment
+Co-ordination till an issue resolution.
+
+More details in - https://www.guru99.com/test-environment-software-testing.html#4
+
+TEM Overview
+What is Test Environments Management?
+Wikipedia Describes it as this: Test Environment Management (TEM) is a function in the software delivery process which aids the software testing cycle by providing a validated, stable and usable test-environment to execute the test scenarios or replicate bugs.
+
+To take this one step further, we'd describe it as follows:
+
+Test Environment Management function of understanding your Non Production Environments and applying that knowledge, with appropriate governance and services to ensure that environments are available for IT Projects and the DevTest community.
+
+TEM is a broad subject and covers many facets often including:
+
+Configuration Management
+Environment Event Scheduling (including Release, Deployment)
+Demand Management (Release and Project System Demand)
+Test Environment Booking Management
+Service Support e.g. Change & Incident Management
+Status Accounting & Reporting
+Test Data Management
+Lab Operations / TestOps
+Environment Orchestration (use of Automation)
+Test Environment Management ultimately ensures DevTest productivity and resource availability.

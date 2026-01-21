@@ -1,0 +1,125 @@
+100001250617552
+https://www.softwaretestingmaterial.com/types-test-automation-frameworks/
+https://www.softwaretestingmaterial.com/explain-test-automation-framework/
+https://www.softwaretestingmaterial.com/test-automation-framework-interview-questions/
+https://www.softwaretestingmaterial.com/capture-screenshot-of-failed-test-cases-using-selenium-webdriver-2/
+https://www.softwaretestingmaterial.com/execute-maven-project-using-jenkins/
+https://www.softwaretestingmaterial.com/css-selector-selenium-webdriver-tutorial/
+https://www.softwaretestingmaterial.com/locators-in-selenium/
+https://www.softwaretestingmaterial.com/dynamic-xpath-in-selenium/
+https://www.softwaretestingmaterial.com/implicit-waits-selenium-webdriver/
+https://www.softwaretestingmaterial.com/webdriverwait-selenium-webdriver/
+https://www.softwaretestingmaterial.com/selenium-fluentwait/
+https://www.softwaretestingmaterial.com/selenium-interview-questions/
+https://www.softwaretestingmaterial.com/generate-extent-reports/
+https://www.softwaretestingmaterial.com/screenshots-extent-reports/
+https://www.softwaretestingmaterial.com/agile-testing-interview-questions/
+https://www.softwaretestingmaterial.com/oops-concept-in-automation-framework/
+https://www.guru99.com/top-20-test-manager-interview-questions.html
+
+http://javaconceptoftheday.com/java-exception-handling-interview-questions-and-answers/
+
+http://www.java67.com/2018/01/how-to-add-new-elements-to-array-java.html#more
+
+https://www.w3.org/TR/CSS/#selectors
+http://www.java2novice.com/java-interview-programs/
+https://www.geeksforgeeks.org/object-class-in-java/
+http://www.codejava.net/java-core/exception/5-rules-about-catching-exceptions-in-java
+http://www.java2novice.com/java-interview-programs/duplicate-number/
+
+
+Apache Tomcat
+-------------
+id - vbanik123
+paswrd - Pa$$w0rd-001
+
+Git
+---
+vijaykumar.banik@gmail.com
+vbanik/Pa$$w0rd-001
+
+vijay.k.banik@gmail.com
+vbanik123
+
+22560916
+HW@jL*O4x
+Delloite
+---------
+vbanik123
+Reffer@1234
+
+IBM
+vijay.k.banik@gmail.com
+Reffer@1234
+
+JPMChase
+------------
+vijaykumar.banik@gmail
+vbanik123
+Reffer@1234
+
+PWC
+-----
+https://www.pwc.in/careers.html
+User Name	:	vijaykumar.banik@gmail.com
+Password	:	99538
+
+TCS
+vijaykumar.banik@gmail.com
+Reffer@1234
+
+Infosys
+------
+https://careers.infosys.com/CareerSite/Aspx/Profile/Landing.aspx?CountryCode=IN&type=Login
+vijaykumar.banik@gmail.com
+Reffer@1234
+
+National Career Service
+------------------------
+https://www.ncs.gov.in/
+Your NCS ID - J13F75-0933412255645
+vijaykumar.banik@gmail.com
+Reffer@1234
+
+http://atppf.nic.in
+
+
+United Health Group
+vabnik123
+vijaykumar.banik@gmail.com
+Reffer@1234
+
+Accenture
+----------
+vijaykumar.banik@gmail.com
+Reffer@1234
+
+Oracle
+-------
+Old - 4878455
+Old - ukN4w2?1
+
+New ID -vbanik123
+pswd - Reffer@1234
+
+Reliance JIO
+vijay.k.banik@gmail.com
+Reffer@1234
+
+wisdomjobs.com
+vijay.k.banik@gmail
+Reffer@1234
+
+timesjobs
+vijay.k.banik@gmail
+Reffer@1234
+
+--------------------------------------------------------------------------------------------
+
+What need to cover?
+
+@Override
+WbDriverListner - need to learn the concept
+Excel reading code in java for Selenium interview.
+Screenshots code in java for selenium.
+

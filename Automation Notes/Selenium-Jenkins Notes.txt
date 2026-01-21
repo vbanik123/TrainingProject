@@ -1,0 +1,150 @@
+Selenium with Jenkins
+* Download latest version of the Apache tomcat from Apache website.
+* Download the latest version of the Jenkins war file from Jenkins website.
+* Unzip the Apache Tomcat and place it in any suitable drive.
+* Place the Jenkins war file in the Apache Tomcat webapps folder.
+* Go back to Apache Tomcat folder and go to bin folder, there you wil get the startup.bat file.
+* Start the tomcat server buy double click the startup.bat or go to command prompt and in the command prompt go the startup.bat folder and the run the startup.bat file.
+* but before that make suare that you have java jdk information saved in the environment variable path.
+* Once you run the Apache server, in the command prompt a password will be generated. Also the password path will be given. What we need to do 
+is just copy the password and open the browser and type localhost:8080/jenkins.
+* once the page will open you will get the Unlock Jenkins messaage which will ask for the Administration password.
+* the message will be like this
+Unlock Jenkins
+To ensure Jenkins is securely set up by the administrator, a password has been written to the log (not sure where to find it?) and this file on the server:
+
+C:\Users\VIJAY\.jenkins\secrets\initialAdminPassword
+
+Please copy the password from either location and paste it below.
+
+Administrator password
+
+* what you will do just paste the password you copied as mentioned in the above steps.
+* Then press the continue button.
+* It will take sometime to load the page.
+* Once the page will get loaded, It will ask to customize Jenkins.
+* There are two options 1. Install Suggested Plugins 2. Select plugins to install.
+* Select the first option.
+* It will download all neccessary plugins and install all those plugins.
+* once it will be over you will get the create user page to create a user.
+* Here you create  user by providing the user name passwors confirm password and email.(Note: so everytime will login wiht the created user not the admin)
+* Once it will be done the jenkins home page will be launched.
+* Now we can create a new job. Click on the link Create a New jobs in the jenkins home page.
+* After that provide an item name in the Enter an item name field.
+* Click on Freestyle Project and click on OK.
+* Project name - Give any project name that you want like AutomationProject and in the Descripttion provide description of the project. Description is optional.
+* There are other option under the Project Name those are Discard Old builds, GitHub Project, This project is parameterized, Throttle Builds, Disable this project etc. Will discuss this in later.
+*Next is Source Code Management - Where is our source code present, we need to choose option from here and those options are
+None
+Git
+Subversion
+*Now the next section is Build Trigger i.e how do we want to trigger the build. It has menu option like
+Trigger builds remotely
+Build after other projects are built
+Build Periodically
+GitHub hook trigger for GITScm polling
+Poll SCM
+
+* Now the next is Build Environment - What is the environment we run for.It has some options like
+Delete workspace before build starts 
+Abort the build it's stuck
+Add timestamps to the Console Output
+Use secret text(s) or field(s)
+
+* Now the most importatnt part is Build. Here we need to add the build step. Here are the options
+- Execute Windows batch command
+- Execute Shell
+- Invoke Ant
+- Invoke Gradle script
+- Invoke top-level Maven targets
+- Run with timeout
+- Set build status to "Pending" on GitHub commit.
+
+* Now the next step is Post Build Action - i.e after the execution what action we need to perform.
+
+* Now save the job that we created. Before move further we need to add some plugins so for that in the Jenkins home page Click on Jenkins go to Manage Jenkins and then choose the Manage Plugins. Now Plugins page will be launched. Click on Available so it will show all available plugins. When all the available plugins appeared go to find text box and type HTML Publisher, so it will just search the HTML Publisher plugin so select this and click on Install Without Restart. After sometime it will install the plugin. This plugin will help to generate the HTML Report.
+Now again search with TestNG plugin it will show the TestNG plugin select the plugin and install without restart. If we want to see what all plugin we installed we cam go to manage plugin page and select the installed which will show all installed plugin.
+
+* Now click on Manage Jenkins -> Configure System -> Here we can configure the mail server. This will discuss in details later.
+
+* Now again clcik on Manage Jenkins -> Global Tool Configuration -> We can Add the JDK here. Click on Add JDK under JDK. Here we have two options JDK and Install automatically. We will chose JDK and provide the JAVA HOME path there.
+Same as For maven click on Add Maven there we have two option. Maven and Install automatically. We will choose Install automatically and choose the version and provide the Maven name like Maven_Home then click apply and save.
+
+Now come to Jenkins Home Select the project you created. Then click on configure -> General -> click on Advanced -> Here Select Use custom Workspace. Then in the Directory provide the Workspace path. The workspace path you will get -> go to eclipse Right click on Project -> choose Properties -> you see the location or path there. Copy the path from there. Now come to the Build in the same page -> Select Add build setup -> Select top-level Maven Target -> Now select M2_Home in the Maven Version -> Then click on advance here -> in the Goal type test -DsuiteXMLFile=testng.xml -> in the pm type pom.xml.
+Now go to Post Build Action -> Click on post build action -> Select Publish TestNG Results. Now click apply and save.
+ 
+
+
+test -DsuiteXMLFile=testng.xml - At your project level whatever suit you have it will take that from testng.xml and execute.
+make sure you have the maven compile plugin in the pom.xml
+<build>
+	<plugins>
+		<plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<!-- This is the JDK version we mentioned below -->
+					<source>1.8</source>
+					</target>1.8</>
+				</configuration>
+			</dependency>
+		</plugin>
+		<plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20.1</version>
+				<configuration>
+					<suiteXmlFile>testNG.xml<suiteXmlFile/>
+				</configuration>
+			</dependency>
+		</plugin>
+	</plugins>
+</build>
+
+ /----------------------------------------------------------------------------------------------------------/
+ /--------------------------------Jenkins Notes from Edureka-------------------------------------------------/
+ /----------------------------------------------------------------------------------------------------------/
+ 
+ For questions actually these are the need to use the Jenkins.
+ * Why we need continious Integration?
+ * What is Continious Integration?
+ * Continious Integration tools.
+ * What is Jenkins?
+ * Jenins Distributed Architecture.
+In general process from development to deployment what we need to do and follow.
+
+All the developers develop the code simulteniously and save all the peoject in the central repository. It can be Git or Subversion etc. Then from there they build the code and deploy in the test severs. From there the testers test the developed functionalities and report the bugs to the developers and then developers fix the bugs and again follow the same process till all the application features abd functionalities are tested completely and testers submitte the report with no bugs. Then they deploy the release in the production servers.
+
+Now we will try to find out what are the problems and challeges we are facing in this process.
+* Developers have to wait till the complete software is developed for the test results. As the testing takes time to test the complete functions till then the developers need to wait.
+
+* If the test fails then locating and fixing bugs is very difficult. Developers have to check the entire source code of the software. Whic is a time consuming.
+
+*Software delivery process was slow due to the above problems.
+*Continious feedback pertaining to things like coding or architectural issues , build failures, test status, etc. was not present.
+
+Now we will see how CI will resolve the discussed issues.
+Since after every commit to the source and auto build is truggered and then it is autometically deployed in the test severs.
+If the test results shows that there is a bug in the code then the developers only have to check the last commit made to the source code.
+This also increases the frequency of new software releases.
+The concerened teams are always provided with the relevant feedback.
+
+Now comparing both the approaches.
+   
+Before Continious Integration
+----------------------------------
+-- The entire source code was built and tested.
+-- Developers have to wait for test results.
+-- No Feedback.
+
+After Continious Integration
+----------------------------------
+-- Every commit made in the source code is built and tested.
+-- Developers know the test result of every commit made in the source code of the run.
+-- Feedback is present.
+

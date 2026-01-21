@@ -1,0 +1,1891 @@
+Key Selenium 4 specific questions:
+-----------------------------------
+What are the major new features introduced in Selenium 4?
+----------------------------------------------------------
+Relative Locators (e.g., above(), below(), toLeftOf(), toRightOf(), near()).
+Improved Selenium Grid 4 architecture (fully distributed, Docker support, Observability).
+Chrome DevTools Protocol (CDP) integration for advanced browser interactions (e.g., network throttling, mocking geolocation, console logs).
+Enhanced WebDriver interface with new methods and capabilities.
+Standardized W3C WebDriver Protocol compliance.
+
+Explain how Relative Locators work in Selenium 4 and provide an example.
+--------------------------------------------------------------------------
+Relative locators allow locating elements based on their visual proximity to other elements on the page.
+Example: driver.findElement(with(By.tagName("input")).above(By.id("username"))).sendKeys("password");
+
+How does Selenium Grid 4 differ from previous versions?
+-------------------------------------------------------
+Grid 4 has a more modern, distributed architecture with separate components (Router, Distributor, Node, Session Map, Event Bus) for better scalability and resilience.
+It offers native Docker support for easier setup and management of nodes.
+Improved observability features for monitoring grid status and test execution.
+
+What is the significance of Chrome DevTools Protocol (CDP) integration in Selenium 4?
+--------------------------------------------------------------------------------------
+CDP allows direct interaction with the browser's internal functionalities beyond basic web element interactions.
+Enables scenarios like network request interception, performance monitoring, emulating device conditions, and accessing console logs.
+
+How does Selenium 4's W3C WebDriver Protocol compliance impact test automation?
+-------------------------------------------------------------------------------
+Ensures better cross-browser compatibility and standardization of WebDriver commands.
+Reduces inconsistencies and makes test scripts more robust across different browsers.
+
+1. What are the major improvements introduced in Selenium 4?
+-------------------------------------------------------------
+W3C WebDriver Standardization: Selenium 4 fully embraces the W3C WebDriver standard, ensuring more consistent and reliable cross-browser test execution.
+Enhanced Selenium Grid: The Grid has been revamped for better scalability, observability (logs, metrics, traces), and native support for Docker and Kubernetes.
+Relative Locators: Introduces new ways to locate elements based on their position relative to other elements on the page (above, below, to the left/right, near).
+Chrome DevTools Protocol (CDP) Integration: Enables direct interaction with the browser's developer tools for tasks like network interception, console monitoring, performance tracing, and mocking device settings.
+Improved Window/Tab Management: Simplified handling of multiple browser windows and tabs with the new newWindow() API, eliminating the need to create new WebDriver objects for new tabs/windows.
+Updated Actions Class: Enhanced methods for simulating complex mouse and keyboard interactions.
+Advanced Screenshot Capabilities: Capture screenshots of specific elements or the entire page, including non-visible portions.
+Improved Documentation: More structured and comprehensive official documentation with up-to-date code examples and use cases.
+Enhanced Selenium IDE: Revived as a Web Extension for major browsers with improved GUI, control flow mechanisms (if/while), multiple locator strategies (backup locators), and a CLI runner for parallel execution. 
+
+2. Explain the significance of W3C WebDriver standardization in Selenium 4
+--------------------------------------------------------------------------
+Selenium 4's adoption of the W3C WebDriver standard ensures more consistent and predictable communication between client libraries (your test code) and browser drivers (e.g., ChromeDriver, GeckoDriver).
+Previously, different browsers might interpret commands slightly differently due to the use of the JSON Wire Protocol. W3C standardization aims to eliminate these inconsistencies, making tests more reliable across various browsers and reducing the need for browser-specific adjustments. 
+
+3. What are relative locators in Selenium 4, and how do they work?
+------------------------------------------------------------------
+Relative locators, also known as Friendly locators, allow you to find WebElements based on their visual location relative to other elements on the page.
+This approach is more robust against minor UI changes, as it doesn't solely rely on absolute XPath or CSS selectors which can break easily.
+You can use methods like above(), below(), toLeftOf(), toRightOf(), and near() in conjunction with withTagName to specify the relative position.
+Example: To locate an email address field positioned above the password field, you might use: WebElement emailAddressField = driver.findElement(with(By.tagName("input")).above(passwordField));.
+
+4. How does Selenium 4 utilize the Chrome DevTools Protocol (CDP)?
+------------------------------------------------------------------
+Selenium 4's integration with CDP allows for deeper interaction with Chrome's developer tools functionalities.
+This provides capabilities like:
+Network Interception: Accessing and analyzing network requests and responses.
+Console Monitoring: Capturing browser console messages and errors.
+Performance Tracing: Accessing page load metrics and rendering statistics.
+Geolocation Emulation: Mocking location data for testing location-aware applications.
+Network Condition Emulation: Simulating different network speeds and conditions.
+
+5. Describe the enhancements made to the Selenium Grid in version 4
+-------------------------------------------------------------------
+Selenium Grid 4 has been completely re-architected to address the scalability and management limitations of previous versions.
+Key improvements include:
+Observability: Enhanced logging, metrics, and tracing for better debugging and insight into the Grid's operations.
+Deployment Options: Can be deployed in standalone, hub-node, or fully distributed modes, providing more flexibility.
+Cloud Integration: Better integration with Docker and Kubernetes for simplified deployment and dynamic scaling in cloud environments (e.g., AWS, Azure).
+Secure Connections: Support for IPv6 and HTTPS for more robust communication.
+Improved User Interface: A more intuitive and user-friendly console for managing Grid sessions. 
+
+6. How do you handle multiple browser windows and tabs in Selenium 4?
+---------------------------------------------------------------------
+Selenium 4 provides a new newWindow() API for creating and switching to new browser windows or tabs within the same session.
+This avoids the need to create new WebDriver objects, simplifying window management.
+Example: To open a new tab and navigate to a URL: driver.switchTo().newWindow(WindowType.TAB); driver.navigate().to("https://example.com");.
+You can still use getWindowHandles() and switchTo().window() to switch between existing windows/tabs. 
+
+7. What is deprecated in Selenium 4?
+------------------------------------
+Desired Capabilities: Replaced by browser-specific "Options" objects (e.g., ChromeOptions, FirefoxOptions) for configuring browser capabilities.
+FindBy Annotation: While not entirely removed, its direct usage has been replaced by the more standardized By locators in methods like findElements.
+Support for Opera and PhantomJS: Removed as their WebDriver implementations are no longer actively developed. 
+
+8. What are some of the enhancements to the Actions class in Selenium 4?
+------------------------------------------------------------------------
+The Actions class has been updated for improved reliability and compatibility, especially for complex interactions.
+New methods like clickAndHold() and release() simplify drag-and-drop operations.
+keyDown() and keyUp() can now be applied to specific WebElements for more targeted keyboard interactions. 
+
+9. Explain the improvements made to Fluent Wait in Selenium 4
+-------------------------------------------------------------
+Selenium 4 enhances Fluent Wait, offering more precise control and readability when dealing with asynchronous page behavior.
+The withTimeout() and pollingEvery() methods now accept a Duration object instead of int and TimeUnit, providing a cleaner syntax.
+Supports Java 8 lambdas for more concise and readable wait conditions. 
+
+10. How can you capture different types of screenshots in Selenium 4?
+---------------------------------------------------------------------
+Selenium 4 introduces the ability to capture screenshots of specific elements or the entire page.
+You can use getScreenshotAs() on a WebElement to capture an element-specific screenshot or on the WebDriver instance for a full-page screenshot.
+This removes the need for third-party libraries previously required for element-level screenshots. 
+These questions cover some of the most important new features and changes in Selenium 4. Remember to be able to explain the "why" behind the changes and the benefits they bring to test automation. Good luck!
+
+General Selenium questions (still relevant in Selenium 4):
+What is Selenium and its components? (WebDriver, Grid, IDE, RC)
+Explain different types of locators in Selenium. (ID, Name, ClassName, TagName, LinkText, PartialLinkText, XPath, CSS Selector, Relative Locators)
+What are different types of waits in Selenium? (Implicit Wait, Explicit Wait, Fluent Wait)
+How do you handle various web elements? (text boxes, buttons, dropdowns, checkboxes, radio buttons, alerts, frames, windows)
+Explain Page Object Model (POM) and its benefits.
+How do you handle exceptions in Selenium? (e.g., NoSuchElementException, StaleElementReferenceException, TimeoutException)
+Describe your experience with frameworks like TestNG or JUnit with Selenium.
+How do you implement data-driven testing in Selenium?
+What are the limitations of Selenium?
+
+Selenium Question:
+- What is Selenium?
+---------------------
+*Selenium is an automation tool to automate scripts to test the UI functionality. It is only concentrate to test User interface not desktop application such as any window based application.
+
+- Does selenium support automation of pages made in PHP or HTML?
+-----------------------------------------------------------------
+*Selenium is independent of languages. So it is hardly matters whether it is designed in PHP or HTML. It is only automate the UI designed for web irrespective of desktop application.
+
+- Does Selenium supports automation of application made in only JAVA?
+-----------------------------------------------------------------------
+*Independent of language. Can support any language like Java,C# etc.
+
+- Does selenium support desktop application automation?
+-------------------------------------------------------
+* NO
+
+-Does Selenium has execution Engine?
+-------------------------------------
+* It means does selenium execute the script their own. So answer is No. It require third party tool to execute the scripts. Like TestNG, JUnit or Main method to invoke the scripts. So No execution engine selenium has.
+
+-Does Selenium has Excel reading method?
+-----------------------------------------
+* No, it uses Apache POI or JXL to read and write data to excel.
+
+- What are the components of Selenium?
+--------------------------------------
+* It has Mainly three components Selenium IDE, Selenium RC and Selenium WebDriver.Selenium RC is deplicated long back. Selenium IDE is very rarely used. The most commonly used is Selenium WebDriver. The latest version of Selenium WebDriver is 3.12.0. Currently 3 release mostly used in the market. The Web Drivers are mostly used for Java, C#, Ruby, Python, Javascript(Node) etc.
+
+- What are the limitations of Selenium?
+---------------------------------------
+* Selenium supports testing of only web based applications. Mobile Application cannot be tested using only selenium. Captcha and Bar code readers cannot be tested using selenium. Reports can only be generated using third party tools like TestNG or Junit. As selenium is free tool, thus there is no ready vendor support though the user can find numerous helping communities. User is expected to know prior programming language.
+
+- What are the different types of locators in Selenium?
+-------------------------------------------------------
+* ID, ClassName, Name, TagName, LinkText, PartialLinkText, Xpath, CSS Selector.
+
+- What is Selenium Grid?
+-------------------------
+* It help us to distribute the load from one system to another system. It help us to run the test in different system and different browser at the same time. Its actually parallely run the test in different nodes. Here One system is the master and other systems are acts as slaves.Master is called Hub and slaves are called Nodes.
+
+- What do you mean by implicitlyWait?
+-------------------------------------
+* ImplicitlyWait is applicable for the entire page. Suppose if implicitlyWait is for 60 seconds that means it will wait for 60 seconds utill all the elements of the entire page get loaded. If it will not loaded withing the specified times then it will get the time out error.
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Duration replaced Long and TimeUnit. Default polling wait for implicitlyWait is 500 milliseconds. noSuchElementException is thrown if the element is not found within the duration.
+
+- What do you mean by explicit Wait?
+-------------------------------------
+* It means it will wait for the particular element to get loaded within the specified time-frame.
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+wait.until(ExpectedConditions.elementToBeSelected(driver.findElement(By.xpath(""))));
+
+In both implicitlyWait and explicitlyWait both go ahead when all the elements of page or specified element loaded within the time frame. It will not wait till the time frame as specified. when it will get the element loaded it will go to the next process.
+
+- What is polling interval?
+---------------------------
+* In explicitlyWait it check after every 1 second whether the specified element get loaded or not but in pooling interval we can explicitly define the frequency to check the element is get loaded or not.
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+wait.pollingEvery(Duration.ofMillis(200));
+wait.until(ExpectedConditions.elementToBeSelected(driver.findElement(By.xpath(""))));
+
+- What is fluentWait?
+* There is no difference between pollingWait and fluent wait, the only difference is it comes with default pollingWait features. Default polling wait fr the Fluent wait is 250 milliseconds i.e. 0.25 seconds.
+
+    WebDriver driver = new ChromeDriver(); // Assuming you have a WebDriver instance
+    FluentWait<WebDriver> wait = new FluentWait<>(driver)
+        .withTimeout(Duration.ofSeconds(30)) // Maximum wait time
+        .pollingEvery(Duration.ofSeconds(5)) // Polling interval
+        .ignoring(NoSuchElementException.class); // Ignore this exception during polling
+		
+	WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("elementId")));
+
+Boolean wait = new FluentWait<WebDriver>(driver).withTimeout(60,TimeUnit.SECONDS)
+.pollingEvery(5,TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
+.until(ExpectedConditions.elementToBeSelected(driver.findElement(By.xpath(""))))
+
+wait().click();
+
+WebElement wait1 = new FluentWait<WebDriver>(driver).withTimeout(60,TimeUnit.SECONDS)
+.pollingEvery(5,TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
+.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(""))))
+
+wait1.click();
+
+
+Difference between FluentWait and Explicit wait 
+--------------------------------------------------
+An explicit wait in Selenium is used to wait for a specific condition to be met for a particular element, such as becoming visible or clickable, with a default polling interval. A fluent wait is a more advanced, customizable version of an explicit wait that allows you to specify the maximum timeout, the exact polling frequency (time between checks), and exceptions to ignore during the wait.  
+
+- What is java script wait?
+* Refer the Javascript ready state below.
+
+
+- What is thread.sleep()
+* It will wait for the specified time even if the element get loaded. It force the system to wait till the specified time.
+Note : Usually we have throws Exception to handle the thread.sleep() but the exact exception is InterruptedException to handle it.
+public void run() {
+        try {
+            System.out.println("Sleeping...");
+            Thread.sleep(10000);
+            System.out.println("Done sleeping, no interrupt.");
+        } catch (InterruptedException e) {
+            System.out.println("I was interrupted!");
+            e.printStackTrace();
+        }
+    }
+
+- What is pageLoadTimeout?
+*It is same like implicitlyWait. It is used with driver.Get() to hit the url and wait till the page loaded to atmost the specified timeout. After that it will give the timeout exception.
+In Selenium 4, pageLoadTimeout is used to set the maximum amount of time a WebDriver instance will wait for a page to load before throwing a TimeoutException. This is crucial for handling web pages with varying load times and preventing tests from hanging indefinitely. The default page load timeout in Selenium is 300 seconds (5 minutes). 
+
+driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+
+Differece between implicitwait and pageloadtimeout in selenium 4 
+--------------------------------------------------------------------
+Target: Implicit wait targets the presence of individual elements in the DOM, while PageLoadTimeout targets the complete loading of the entire web page.
+Trigger: Implicit wait is triggered during findElement operations, while PageLoadTimeout is triggered during page navigation.
+Error Type: Implicit wait throws NoSuchElementException, while PageLoadTimeout throws TimeoutException.
+Scope: Implicit wait is global for element finding, while PageLoadTimeout applies to page navigation.
+
+- What is java script Ready state?
+* ExpectedCondition<Boolean> javascriptWait = new ExpectedCondition<Boolean>(){
+	public Boolean apply(WebDriver driver){
+		return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+	}
+
+};
+
+try{
+	System.out.println("Waiting for page to load....");
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(javascriptWait)
+}catch(Throwable error){
+	System.out.println("Timeout waiting for Page Load Request to complete after "+ 60 +" Seconds.");
+	Assert.assertFalse(true, "Timeout waiting for  Page Load Request to complete.")
+}
+
+- How to enter data in the textbox?
+* WebDriver driver = new FirefoxDriver();
+driver.findElement(By.cssSelector("")).sendKeys("");
+
+- how do click on link?
+* WebDriver driver = new FirefoxDriver();
+driver.findElement(By.linkText("")).click();
+
+- How to check the element is displayed or not?
+* WebDriver driver = new FirefoxDriver();
+driver.findElement(By.xpath("")).isDisplayed();
+return true if the element is displayed otherwise it will throw exception.
+ try{
+	driver.findElement(By.xpath("")).isDisplayed();
+	return true;
+}catch(Exception e){
+	returm false;
+}
+
+Note - It will return false if the element is present but it is hidden.
+
+- How to check the element is selected or not?
+* WebDriver driver = new FirefoxDriver();
+driver.findElement(By.xpath("")).isSelected();
+return true if the element is selected otherwise it will throw exception.
+ try{
+	driver.findElement(By.id("")).isSelected();
+	return true;
+}catch(Exception e){
+	returm false;
+}
+
+driver.findElement(By.id("")).getAttribute("class").contains("checked");
+
+- What is the method to find the element in the UI?
+* WebDriver driver = new FirefoxDriver();
+  driver.findElement(By.xpath(""))
+
+- What is the method to find all the element in the UI?
+*  driver.findElements(By.tagName("//a")).size();
+
+- How to get the URL of current window?
+-----------------------------------------
+*  driver.getCurrentURL();
+It will return the URL of the current page.
+
+Difference between get and navigate method in selenium?
+--------------------------------------------------------
+With get method it hit the url and wait till all the components get loaded. If your next piece of code is to click the link so it wait till all the element of the page get loaded and then it execute the next step. But in case of Navigate it hit the url and do not wait till all the components of the page get loaded and it execute the the next step and in that case if the element it try to click and that is is not yet loaded it will get the exeception. But the benefit of using navigate method is we can use the back, forward and refresh of the browser.
+
+- Difference between quit and close methods in Webdriver?
+----------------------------------------------------------
+* both is use to close the browser but there is a difference between them. Close is use to close the current browser which is in focus. Suppose our script while executing it open 3 browsers and currently we are in the 3rd browser in focus so it will close the 3rd browser. But the quit method will close all the open instance of the browser.
+
+- How to get the title of the current page?
+-----------------------------------------------
+*  driver.getTitle();
+It will return the title of the current page.
+
+- How to get the window id on runtime?
+- How to handle multiple window at runtime?
+---------------------------------------------------
+
+* WebDriver driver = new FirefoxDriver();
+Set<String> windowsId  = driver.getWindowHandles();
+Iterator<String> itr = windowsId.iterator();
+ArrayList<String> ids = new ArrayList<String>();
+while(itr.hasNext()){
+	ids.add(itr.next());
+}
+
+driver.switchTo().window(ids.get(3)); //Moved to fourth window....
+//---- Perform some task in fourth window
+driver.close(); //close the fourth window
+driver.switchTo().window(ids.get(2)); //Moved to Third window....
+driver.close(); //close the third window
+
+driver.switchTo().window(ids.get(0)); //Moved to parent window....
+
+
+- How to maximize the window
+* driver.manage().window().maximize();
+
+- How to handle https certifications?
+DesiredCapabilities cap = DesiredCapabilities.chrome();
+cap.SetCapabilities(CapabilityType.ACCEPT_SSL_CERTS, true);
+
+- How do you get the co-ordinate of the window?
+* Point position = driver.manage().window().getPosition()
+position.getX();
+position.getY();
+
+Below code is to get the position of the element.
+------------------------------------------------
+Point location = driver.findElement(by.id("")).getLocation();
+location.x;
+location.y;
+
+what is the difference between getPosition() and getLocation()﻿
+Ans - GetPosition will return point which is nothing but the X and Y co-ordinate of the window. But GetLocation will return the point which is nothing but the X and Y position of the element.
+
+------------------
+getSize() : 
+------------------
+It will returns the "Dimension" object.
+If you want to get the width and Height of the specific element on the webpage then use "getsize()" method.
+Sample code to get the width and height :
+WebDriver driver = new FirefoxDriver(); 
+driver.get("https://google.com");
+Dimension dimesions=driver.findElement(By.id("gbqfsa")).getSize();
+System.out.println("Width : "+dimesions.width);
+System.out.println("Height : "+dimesions.height);
+Note:
+Make sure to import "org.openqa.selenium.Dimension;" package.
+
+---------------------
+getLocation() :
+---------------------
+It will return the "Point" object.
+If you want to get the exact "x" and "y" coordinates of the element then use "getLocation()"  method.
+
+Sample code to get the "x" and "y" coordinates :
+WebDriver driver = new FirefoxDriver(); 
+driver.get("https://google.com");
+Point point=driver.findElement(By.id("gbqfsa")).getLocation();
+System.out.println("X Position : "point.x);
+System.out.println("Y Position : "point.y);
+Note:
+Makesure to import "org.openqa.selenium.Point;" package.
+
+findElement() :
+--------------------
+
+Find the first element within the current page using the given "locating mechanism".
+Returns a single WebElement.
+Syntax: WebElement findElement(By by)
+
+Ex:
+driver.get("https://signup.live.com");
+WebElement firstName=driver.findElement(By.id("iFirstName"));
+firstName.sendKeys("Automated First Name");
+
+findElements() :
+----------------------
+
+Find all elements within the current page using the given "locating mechanism".
+Returns List of WebElements.
+Syntax:  java.util.List<WebElement> findElements(By by)
+
+Ex:
+driver.get("https://signup.live.com");
+List<WebElement> textboxes1=driver.findElements(By.xpath("//input[@type='text']"));
+System.out.println("total textboxes "+textboxes1.size());
+
+
+- How to do mouse Hover
+------------------------
+* Actions action = new Actions(Driver);
+action.moveToElement(driver.findElement(By.id(""))).build().perform();
+
+- How to drag and drop using Selenium?
+---------------------------------------
+Actions action = new Actions(Driver);
+WebElement source = driver.findElement(By.xpath(""));
+WebElement target = driver.findElement(By.xpath(""));
+action.dragAndDrop(source,target);
+action.build().perform();
+
+//------------------------------
+// More method to Drag and Drop
+//------------------------------
+Actions action = new Actions(Driver);
+WebElement source = driver.findElement(By.xpath(""));
+WebElement target = driver.findElement(By.xpath(""));
+action.clickAndHold(source)
+.moveToElement(target)
+.release(target);
+
+action.build().perform();
+
+//------------------------------
+// More method to Drag and Drop
+//------------------------------
+Action action = new Action(Driver);
+WebElement source = driver.findElement(By.xpath(""));
+WebElement target = driver.findElement(By.xpath(""));
+
+action.moveToElement(source);
+action.keyDown(Keys.CONTROL);
+action.moveToElement(target);
+action.keyUp(Keys.CONTROL);
+action.build().perform();
+
+- How to do double click?
+---------------------------
+* Action action = new Action(Driver);
+WebElement objElmnt = driver.findElement(By.xpath(""));
+action.moveToElement(objElmnt).doubleClick();
+
+- How Keys class work?
+----------------------
+* action.sendKeys(Keys.ENTER);
+action.sendKeys(Keys.F6);
+//-- Likewise we can use any keys
+
+- How to enter the keys in caps lock?
+-------------------------------------
+* driver.findElement(By.xpath("dffd")).sendKeys(keys.SHIFT,"Hello")
+
+- How to work with alert?
+--------------------------
+* WebDriver driver = new FirefoxDriver();
+Alert alert = driver.switchTo.alert();
+alert.accept();
+alert.dismiss();
+
+- How to work with iFrame?
+-----------------------------
+WebElement iframeElement = driver.findElement(By.tagName("iframe"));
+driver.switchTo().frame(iframeElement);
+
+driver.switchTo().frame(int index)
+driver.findElements(By.tagName("iframe")).size() //return the number of iframes available in the page.
+driver.switchTo().frame(0) // by index value
+driver.switchTo().frame(String nameOrId)
+driver.switchTo().frame("name of iframe") // by name value
+driver.switchTo().frame(driver.findElement(By.className(""))) // by webelement
+
+Switching Back to the Main Content
+------------------------------------
+After completing actions within an iframe, it is crucial to switch the driver's focus back to the main page or the parent frame. to the main document.
+Use driver.switchTo().defaultContent() to return to the top-level HTML document.
+    driver.switchTo().defaultContent();
+
+To the Parent Frame (for nested iframes):
+-----------------------------------------
+If dealing with nested iframes, driver.switchTo().parentFrame() moves the driver's focus one level up to the immediate parent iframe.
+driver.switchTo().parentFrame();
+
+
+- In how many ways we can handle frames in the application using webDriver methods?
+----------------------------------------------------------------------------------
+Using ID, Name and frame webelement
+
+- How to work with Select
+Select select = new Select(driver.findElement(By.tagName("")));
+select.selectByIndex(0); // Select By index value
+select.selectByValue(value); // Select By Value in the value html tag
+select.selectByVisibleText(textName); // Select By Visible text in the dropdown
+
+//deselect
+------------------
+select.deselectAll(); //deselct all
+// we can also deselect by index, by value in the value html tag and deselect by visible text which is the vlaue in the dropdown
+
+- How to get the links counts in the webpage?
+----------------------------------------------
+* driver.findElements(By.tagName("a")).size();
+
+- How to validate that you switch to right window?
+--------------------------------------------------
+* first swith to desired window and then 
+driver.getTitle();
+
+- How to execute the java scipt?
+------------------------------------
+* WebDriver driver = new FirefoxDriver();
+EventFiringWebDriver dr = new EventFiringWebDriver(driver);
+dr.executeScript("documnet.getElementById(\"idName\")"); // This is just identifying the element in the page through java script executor
+// Now if we want to set the value for that element in through Java script here is the code
+dr.executeScript("documnet.getElementById(\"idName\").value=\"test\"");
+//---- So in the above code segment we used the EventFiring to execute the javascript code. We have another approach to execute the javascript and that is cast the driver by JavaScriptExecutor
+
+JavaScriptExecutor jvScript = ((JavaScriptExecutor)driver).executeScript(arg0,arg1);
+
+- How to work with Property files?
+------------------------------------
+* In eclipse Go to File > new > file
+name it anything like any.property
+open the property file and type 
+userName="Vijay Banik"
+Create a class say TestProperty.java
+here is the code snipet
+
+import java.util.Properties
+
+public static void main(String[] args) throws IOException{
+	Properties pr = new Properties() // import java util properties class
+// creating file object with the property file.
+File file = new File(System.getProperty("user.dir"+"/src/test/resourse/any.property"))
+FileInputStream input = new FileInputStream(file);
+
+pr.load(input);
+System.out.println(pr.getProperty("userName"));
+}
+
+- What are the java script functions for selenium object location?
+* xpath functions to be used with the java scripts.
+following-sibling
+preceding-sibling
+starts-with();
+ends-with();
+following;
+preceding;
+contains;
+
+with CSS we can use the below functions
+nth-child(child number) // child number be any number like 1 or 2 etc.
+$ - it is the starts with for css locator
+^ - ends with in css locator
+
+- How many test script do you write in a day.
+---------------------------------------------
+* the answer is depends upon the scenarios and it complexity. If it is end to end scenarios with business logics then it may be 1 to 2. If only UI verifications without functionality then it may vary from 7- 8 like wise.
+
+- What are the roles and responsibilities?
+* Involved in evaluating Selenium for Web UI Automation.
+* Involved in designing and implementing selenium Webdriver automation framework build using Selenium web driver + testNG as execution engine.
+* Involved in designing automation scripts
+* Performed automated Regression testing, in co-ordinate with manual testing team.
+* Update and maintained various test artifacts in the test automation framework depending on the changes required.
+
+- How many team members in your team? 
+* Its completely based on each individuals team strength.
+
+-Is it possible to automate in the current sprint?
+* The answer can be vary from team to team based on the requirement and its dependency and challenges. Some requirements can be designed in the 2-3 weeks time framework alloted for the sprint and some may take time when development completed at very last day or blocked due to technical challenges or environment issues.
+This answer may vary
+
+- How do you execute test scripts?
+* TestNG
+* Schedule the job through Jenkins and execute the Scripts to a certain time as they configured in the Jenkins.
+* create a batch file and trigger the scripts through .bat file.
+
+- What is the source code management you use?
+* SVN, Git Hub, Jenkins etc.
+
+- Do you execute test parallely?
+* Yes in TestNG there is a option to do so. In the testNG xml go to suit tag write 
+<suit name ='test' parallel='class' thread-count='3'>
+
+</suit>
+Here the classes will run parallely and as we mentiond thread-count = 3 so 3 instances will run parallely.
+
+- What are the challenges in the automation?
+* The first challenge is how do we write a method which should work irrespective of GUI changes.
+* handling the dynamic object is a second challenge. we can handle using cssSelector features like starts-with ends-with etc. For others there could be other possibilities and option to handle such situation. It can vary from one individuals to another.
+The main challenge is how to execute all the scripts. To handle such situation to execute all the scripts without any interrupt and synchronize is a actual trick.
+How you define the structure of your framework is a challenge. Your framework should be enough capable to accept and adopt any major changes. Like when you get the latest version of the selenium so it should be run smoothly without or with minimal changes in the framework side.
+
+- What are the methods of excel readers.
+* When we work with poi features to implement and handles the excel features.
+
+public static void main(String[] args){
+	FileInputStream fis;
+	XSSFWorkbook workbook;
+	XSSFSheet sheet;
+	XSSFRow row;
+	XSSFCell cell;
+	
+	fis = new FileInputStream("/src/test/java/com/automation/flip/data/test.xls");
+	workbook = new XSSFWorkbook(fis);
+	int index = workbook.getSheetIndex("LoginTest");
+	sheet = workbook.getSheetAt(index);
+	row = sheet.getRow(0);
+	row.getLastCellNum();
+	
+	cell = row.getCell(3);
+	if(cell.getCellType() == Cell.CELL_TYPE_STRING){
+		cell.getStringCellValue();
+	}else if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+		String.valueOf(cell.getNumericCellValue());
+	}else if(cell.getCellType() == Cell.CELL_TYPE_BOOLEAN){
+		String.valueOf(cell.getBooleanCellValue());
+
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------
+
+1. What is Automation Testing?
+-------------------------------
+Ans - Automation testing is the process of testing the software using an automation tool to find the defects. In this process, executing the test scripts and generating the results are performed automatically by automation tools. Some most popular tools to do automation testing are HP QTP/UFT, Selenium WebDriver, etc.
+
+2. What are the benefits of Automation Testing?
+------------------------------------------------
+Ans - This is one of the common interview questions in any Automation testing job.
+a. Saves time and money. Automation testing is faster in execution.
+b. Reusability of code. Create one time and execute multiple times with less or no maintenance.
+c. Easy reporting. It generates automatic reports after test execution.
+d. Easy for compatibility testing. It enables parallel execution in the combination of different OS and browser environments.
+e. Low-cost maintenance. It is cheaper compared to manual testing in a long run.
+f. Automated testing is more reliable.
+g. Automated testing is more powerful and versatile.
+h. It is mostly used for regression testing. Supports execution of repeated test cases.
+i. Minimal manual intervention. Test scripts can be run unattended.
+j. Maximum coverage. It helps to increase the test coverage.
+
+3. What are the challenges and limitations of Selenium WebDriver?
+-----------------------------------------------------------------
+Ans - As we all know Selenium WebDriver is a tool which automates the browser to mimic real user actions on the web. Selenium is a free open source testing tool. Some of the challenges with selenium webdriver are as follows
+We cannot test windows application
+We cannot test mobile apps
+Limited reporting
+Handling dynamic Elements
+Handling page load
+Handling pop up windows
+Handling captcha and Bar code
+
+4. What type of tests have you automated?
+-----------------------------------------
+Ans - Our main focus is to automate test cases to do Regression testing, Smoke testing, and Sanity testing. Sometimes based on the project and the test time estimation, we do focus on End to End testing.
+
+5. How many test cases you have automated per day?
+--------------------------------------------------
+Ans - It depends on Test case scenario complexity and length. I did automate 2-5 test scenarios per day when the complexity is limited. Sometimes just 1 or fewer test scenarios in a day when the complexity is high.
+
+6. What is a Framework?
+-----------------------
+Ans - A framework defines a set of rules or best practices which we can follow in a
+Data Driven Testing Framework
+Keyword Driven Testing Framework
+Hybrid Testing Framework
+
+7. Have you created any Framework?
+----------------------------------
+Ans - If you are a beginner: No, I didn’t get a chance to create a framework. I have used the framework which is already available.
+If you are an experienced tester: Yes, I have created a framework.  Or I have involved in the creation of the framework.
+
+8. Can you explain the Framework which you have used in your Selenium Project?
+------------------------------------------------------------------------------
+Ans - Here we have clearly explained each component of Framework.
+We need to specify in and out of our Test Automation Framework such as programming language used, Type of framework used, Test Base Class (Initializing WebDriver, Implicit Waits), How we separate Element locators and tests (Page Objects, Page Factory), Utility functions file, Property files, TestNG annotations, How we parameterize tests using Excel files, How we capture error screenshots, Generating reports(Extent Reports), Emailing reports, Version Control System used and Continues Integration Tool used.
+
+Language: In our Selenium Project we are using Java language. Even though Selenium supports multiple languages, we are using Java language is just because most of the automation developers have knowledge on Selenium with Java.
+Type of Framework: In our project, we are using Data-driven Framework by using Page Object Model design pattern with Page Factory.
+
+POM: As per the Page Object Model, we have maintained a class for every web page. Each web page has a separate class and that class holds the functionality and members of that web page. Separate classes for every individual test.
+
+Packages: We have separate packages for Pages and Tests. All the web page related classes come under Pages package and all the tests related classes come under Tests package.
+
+For example, Home Page and Login Page have a separate classes to store element locators. For the login test there would be a separate class which calls the methods from the Home Page class and Login Page class.
+
+Test Base Class: Test Base class (TestBase.java) deals with all the common functions used by all the pages. This class is responsible for loading the configurations from properties files, Initializing the WebDriver, Implicit Waits, Extent Reports and also to create the object of FileInputStream which is responsible for pointing towards the file from which the data should be read.
+
+Utility Class (AKA Functions Class): Utility class (TestUtil.java) stores and handles the functions (The code which is repetitive in nature such as waits, actions, capturing screenshots, accessing excels, sending email etc.,) which can be commonly used across the entire framework. The reason behind creating utility class is to achieve reusability. This class extends the TestBase class to inherit the properties of TestBase in TestUtil.
+
+Properties file: This file (config.properties) stores the information that remains static throughout the framework such as browser specific information, application URL, screenshots path etc.
+All the details which change as per the environment and authorization such as URL, Login Credentials are kept in the config.properties file. Keeping these details in a separate file makes easy to maintain.
+
+Screenshots:  Screenshots will be captured and stored in a separate folder and also the screenshots of a failed test cases will be added in the extent reports.
+
+Test Data: All the historical test data will be kept in excel sheet (controller.xlsx). By using ‘controller.xlsx’, we pass test data and handle data driven testing. We use Apache POI to handle excel sheets.
+
+TestNG: Using TestNG for Assertions, Grouping and Parallel execution.
+
+Maven: Using Maven for build, execution and dependency purpose. Integrating the TestNG dependency in POM.xml file and running this POM.xml file using Jenkins.
+
+Version Control Tool: We use Git as a repository to store our test scripts.
+
+Jenkins: By using Jenkins CI (Continuous Integration) Tool, we execute test cases on daily basis and also for nightly execution based on the schedule. Test Result will be sent to the peers using Jenkins.
+
+Extent Reports: For the reporting purpose, we are using Extent Reports. It generates beautiful HTML reports. We use the extent reports for maintaining logs and also to include the screenshots of failed test cases in the Extent Report.
+
+You have to explain all these when you are asked to explain test automation framework in the interview. If you have any other thoughts on how to explain test automation framework, comment below in the comments section.
+
+
+what are the parameters consider to select the test cases for the automation
+---------------------------------------------------------------------------------
+To select test cases for automation, focus on criteria like repetitive and time-consuming tests, critical business functions, stable features, data-driven scenarios, and tests requiring cross-platform compatibility. Also consider factors like determinism, ease of setup, maintainability, and the value the test provides relative to the automation effort. 
+
+Test Case Characteristics to Automate:
+--------------------------------------
+Repetitive & Frequent Execution: Automate tests like regression, smoke, or sanity checks that are run often, freeing up manual testers for more complex tasks.
+--------------------------------
+Time-Consuming & Tedious: Tests that take a significant amount of time to run manually are prime candidates for automation, as they can be run faster and more often.
+------------------------
+Critical Functionality & High Risk: Prioritize tests for core business processes (like payments or logins) and areas prone to defects to ensure stability.
+----------------------------------
+Stable & Mature Features: Automate tests for features that are stable and unlikely to change frequently to reduce maintenance headaches.
+------------------------
+Data-Driven & Data-Intensive: Tests that require running the same logic with multiple data sets or involve large amounts of data are well-suited for automation in data-driven 
+frameworks.
+Human-Prone Errors: Select tests that are prone to human error, as automation can provide consistent and predictable results. 
+------------------
+Factors to Consider for Automation Effort:
+------------------------------------------
+Determinism: Choose tests that produce consistent and predictable results, as flaky or timing-sensitive tests are poor automation candidates.
+Independence: Favor test cases that can run on their own without relying on the successful completion of other tests.
+Cross-Platform & Environment Relevance: Automate tests that need to run across different operating systems, devices, and browsers to save time and ensure broad coverage.
+Maintainability: Select tests and features that are stable and less likely to change, making the automated scripts easier to maintain over time.
+Reusability: Look for test cases where components or parts of the test can be reused in other automated scenarios to maximize efficiency.
+Value vs. Effort: Evaluate whether the effort required to automate a test is justified by the value it brings in terms of time savings, increased accuracy, and improved coverage
+
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+Page Object Model (POM)
+-------------------------
+The Page Object Model (POM) is a design pattern used in test automation to create an object repository for web UI elements. It separates UI element locators from test scripts to improve test maintenance, readability, and reusability. In POM, each web page is represented by a class that contains web elements and methods for interacting with them. This separation means that changes to the UI only require updates to the relevant page class. 
+Key benefits of POM
+Improved Maintainability: Updates are limited to specific page classes when the UI changes.
+Enhanced Reusability: Page objects and their methods can be used in multiple test cases.
+Greater Readability: Test scripts focus on test logic, as element details are in page classes. 
+
+Page Factory
+----------------
+Page Factory is a class in Selenium WebDriver that supports the Page Object Model. It simplifies initializing web elements using annotations like @FindBy, reducing boilerplate code. 
+Key features of Page Factory
+@FindBy Annotation: Defines locators for web elements within the page class.
+initElements() Method: Initializes elements defined with @FindBy.
+Lazy Initialization: Elements are located only when used, potentially improving performance. 
+
+Comparing POM and Page Factory
+-------------------------------
+POM and Page Factory differ in how they handle element initialization and locator declaration. 
+
++--------+-----------------------------+---------------------------+-------------------------------+---------------------+
++Criteria +							   +   Page Object Model (POM) +							   +	Page Factory     +
++--------+-----------------------------+---------------------------+-------------------------------+---------------------+
+
+Code Repetition							Higher due to manual initialization							Reduced with @FindBy annotations
+Code Reusability						Achieved through page methods								Improved through automated initialization
+Code Snippet							Requires explicit locator declaration						Uses @FindBy for cleaner code
+Initialization							Manual definition and initialization						Dynamic initialization with initElements()
+
+@FindBy Annotation: This annotation is used to declare and locate web elements within your Page Object classes. You can specify various locator strategies like id, name, className, xpath, css, etc.
+
+PageFactory.initElements(): This static method is crucial for initializing the web elements declared with @FindBy annotations. It takes two arguments: the WebDriver instance and the Page Object class instance.
+
+public LoginPage(WebDriver driver) {
+            PageFactory.initElements(driver, this); // Initializes elements for this LoginPage instance
+        }
+		
+		
+Choosing between POM and Page Factory
+--------------------------------------
+The choice depends on project size, UI change frequency, and regression testing needs. 
+POM is suitable for clear, explicit approaches, static UIs, and when more control over element handling is needed.
+Page Factory is beneficial for cleaner code, frequent element reuse, lazy initialization for performance, and leveraging annotations. 
+Both POM and Page Factory contribute to efficient test automation with Selenium. Understanding their differences helps in choosing the best approach for specific automation needs.
+
+
+---------------------------------------------------------------------------
+
+9. Why do you prefer Selenium Automation Tool?
+-----------------------------------------------
+Ans - Free and open source
+Have large user base and helping communities
+Cross-browser compatibility
+Platform compatibility
+Multiple programming languages support
+
+10. What is Selenium?
+-----------------------
+Ans - Selenium is an open source (free) automated testing suite to test web applications. It supports different platforms and browsers. It has gained a lot of popularity in terms of web-based automated testing and giving a great competition to the famous commercial tool HP QTP (Quick Test Professional) AKA HP UFT (Unified Functional Testing).
+Selenium is a set of different software tools. Each tool has a different approach in supporting web based automation testing.
+It has four components namely,
+Selenium IDE (Selenium Integrated Development Environment)
+Selenium RC (Selenium Remote Control)
+Selenium WebDriver
+Selenium Grid
+
+11. What is Selenium IDE?
+---------------------------
+Ans - Selenium IDE (Integrated Development Environment) is a Firefox plugin. It is the simplest framework in the Selenium Suite. It allows us to record and playback the scripts. Even though we can create scripts using Selenium IDE, we need to use Selenium RC or Selenium WebDriver to write more advanced and robust test cases.
+
+12. What is Selenese?
+-----------------------
+Ans - Selenese is the language which is used to write test scripts in Selenium IDE.
+
+13. Which is the only browser that supports Selenium IDE to be used?
+--------------------------------------------------------------------
+Ans - Firefox
+
+14. What is Selenium RC?
+------------------------
+Ans - Selenium RC AKA Selenium Remote control / Selenium 1. Selenium Remote Control was the main Selenium project for a long time before the WebDriver merge brought up Selenium 2. Selenium 1 is still actively supported (in maintenance mode). It relies on JavaScript for automation. It supports Java, Javascript, Ruby, PHP, Python, Perl and C#. It supports almost every browser out there.
+
+15. What is Selenium WebDriver?
+-------------------------------
+Ans - Selenium WebDriver AKA Selenium 2 is a browser automation framework that accepts commands and sends them to a browser. It is implemented through a browser-specific driver. It controls the browser by directly communicating with it. Selenium WebDriver supports Java, C#, PHP, Python, Perl, Ruby.
+
+16. What is Selenium Grid?
+---------------------------
+Ans - Selenium Grid is a tool used together with Selenium RC to run tests on different machines against different browsers in parallel. That is, running multiple tests at the same time against different machines running different browsers and operating systems.
+In simple words, it is used to distribute your test execution on multiple platforms and environments concurrently.
+
+17. When do you use Selenium Grid?
+-----------------------------------
+Ans - Selenium Grid can be used to execute same or different test scripts on multiple platforms and browsers concurrently so as to achieve distributed test execution.
+
+18. What are the advantages of Selenium Grid?
+----------------------------------------------
+Ans - It allows running test cases in parallel thereby saving test execution time.
+It allows multi-browser testing
+It allows us to execute test cases on multi-platform
+
+19. What is a hub in Selenium Grid?
+-----------------------------------
+A hub is a server or a central point that controls the test executions on different machines.
+
+20. What is a node in Selenium Grid?
+--------------------------------------
+Node is the machine which is attached to the hub. There can be multiple nodes in Selenium Grid.
+
+21. What are the types of WebDriver APIs available in Selenium?
+---------------------------------------------------------------
+Ans - Firefox Driver
+Gecko Driver
+InternetExplorer Driver
+Chrome Driver
+HTML Driver
+Opera Driver
+Safari Driver
+Android Driver
+iPhone Driver
+EventFiringWebDriver
+
+22. Which WebDriver implementation claims to be the fastest?
+------------------------------------------------------------
+Ans - The fastest implementation of WebDriver is the HTMLUnitDriver. It is because the HTMLUnitDriver does not execute tests in the browser.
+
+23. What are the Programming Languages supported by Selenium WebDiver?
+----------------------------------------------------------------------
+Ans - Java,C#,Python,Ruby,Perl,PHP
+
+24. What are the Operating Systems supported by Selenium WebDriver?
+--------------------------------------------------------------------
+Ans - Windows,Linux,Apple
+
+25. What are the Open-source Frameworks supported by Selenium WebDriver?
+-------------------------------------------------------------------------
+Ans - JUnit, TestNG
+
+26. What are the Locators available in Selenium?
+------------------------------------------------
+Ans - ID,ClassName,Name,TagName,LinkText,PartialLinkText,XPath,CSS Selector
+
+27. What is an XPath?
+------------------------
+Ans - XPath is used to locate the elements. Using XPath, we could navigate through elements and attributes in an XML document to locate web elements such as textbox, button, checkbox, Image etc., in a web page.
+
+28. What is the difference between “/” and “//” 
+-----------------------------------------------
+Ans - Single Slash “/” – Single slash is used to create XPath with absolute path i.e. the XPath would be created to start selection from the document node/start node.
+
+Double Slash “//” – Double slash is used to create XPath with relative path i.e. the XPath would be created to start selection from anywhere within the document.
+
+29. What is the difference between Absolute Path and Relative Path?
+----------------------------------------------------------------------
+Ans - Absolute XPath starts from the root node and ends with desired descendant element’s node. It starts with top HTML node and ends with input node. It starts with a single forward slash(/) as shown below.
+/html/body/div[3]/div[1]/form/table/tbody/tr[1]/td/input
+Relative XPath starts from any node in between the HTML page to the current element’s node(last node of the element). It starts with a double forward slash(//) as shown below.
+//input[@id='email']
+
+30. What is the difference between Assert and Verify in Selenium?
+-----------------------------------------------------------------
+Ans - Assert: In simple words, if the assert condition is true then the program control will execute the next test step but if the condition is false, the execution will stop and further test step will not be executed.
+When an “assert” command fails, the test execution will be aborted. So when the Assertion fails, all the test steps after that line of code are skipped. The solution to overcoming this issue is to use a try-catch block. We use the Assertion in the try catch block. Mostly, the assert command is used when the end result of the check value should pass to continue to the next step.
+
+Verify: In simple words, there won’t be any halt in the test execution even though the verify condition is true or false.
+When a “verify” command fails, the test will continue executing and logging the failure. Mostly, the Verify command is used to check non-critical things. In such cases where we move forward even though the end result of the check value is failed.
+
+31. What are Soft Assert and Hard Assert in Selenium?
+-------------------------------------------------------
+Ans - soft assert: Soft Assert collects errors during @Test Soft Assert does not throw an exception when an assert fails and would continue with the next step after the assert statement.
+Soft assertions in Selenium, typically implemented using the SoftAssert class from the TestNG framework, allow a test case to continue execution even if an assertion fails. Unlike hard assertions, which immediately terminate the test upon failure, soft assertions collect all failures and report them at a later point.
+
+SoftAssert softAssert = new SoftAssert();
+Assertion Calls: Instead of using the standard Assert methods, the SoftAssert object is used to perform assertions (e.g., softAssert.assertEquals(), softAssert.assertTrue()). If a condition fails, the failure is recorded but the test execution proceeds to the next line of code.
+Reporting Failures: At the end of the test method, the softAssert.assertAll() method must be called. This method reviews all the collected failures. If any soft assertions have failed, assertAll() will then throw an AssertionError, causing the test to be marked as failed. If no soft assertions failed, the test will be marked as passed.
+
+Advantages of Soft Assertions:
+Comprehensive Error Reporting: Allows for the identification of multiple issues within a single test execution, rather than stopping at the first failure.
+Improved Test Efficiency: Useful in scenarios where the failure of one condition does not hinder the execution or validation of subsequent conditions, such as form validations or UI element checks.
+
+Hard Assert: Hard Assert throws an AssertException immediately when an assert statement fails and test suite continues with next @Test
+
+32. What are the verification points available in Selenium?
+-----------------------------------------------------------
+Ans - In Selenium IDE, we use Selenese Verify and Assert Commands as Verification points
+In Selenium WebDriver, there is no built-in features for verification points. It totally depends on our coding style. some of the Verification points are
+
+To check for page title
+To check for certain text
+To check for certain element (text box, button, drop down, etc.)
+
+33. How to launch a browser using Selenium WebDriver?
+------------------------------------------------------
+Ans - WebDriver is an Interface. We create an Object of a required driver class such as FirefoxDriver, ChromeDriver, InternetExplorerDriver etc.
+To launch Firefox Driver:
+WebDriver driver = new FirefoxDriver();
+
+To launch Chrome Driver:
+WebDriver driver = new ChromeDriver();
+
+To launch Internet Explorer Driver:
+WebDriver driver = new InternetExplorerDriver();
+
+34. Is the FirefoxDriver a Class or an Interface?
+----------------------------------------------------
+Ans - FirefoxDriver is a Java class, and it implements the WebDriver interface.
+
+35. What is the super interface of WebDriver?
+---------------------------------------------
+Ans - SearchContext.
+
+36. Explain the line of code Webdriver driver = new FirefoxDriver(); ?
+----------------------------------------------------------------------
+Ans - Webdriver driver = new FirefoxDriver();
+‘WebDriver‘ is an interface and we are creating an object of type WebDriver instantiating an object of FirefoxDriver class.
+
+37. We do create a reference variable ‘driver’ of type WebDriver
+-----------------------------------------------------------------
+WebDriver driver = new FirefoxDriver();
+instead of creating
+FirefoxDriver driver = new FirefoxDriver();
+
+What is the purpose of doing this way?
+-------------------------------------------------------------------
+Ans - If we create a reference variable driver of type WebDriver then we could use the same driver variable to work with any browser of our choice such as IEDriver, SafariDriver etc.
+
+38. What are the different exceptions you have faced in Selenium WebDriver?
+----------------------------------------------------------------------------
+Ans - Some of the exceptions I have faced in my current project are
+ElementNotVisibleException
+StaleElementReferenceException
+
+Element Not visible Exception:
+------------------------------
+This exception will be thrown when you are trying to locate a particular element on webpage that is not currently visible even though it is present in the DOM. Also sometimes, if you are trying to locate an element with the xpath which associates with two or more element.
+
+Stale Element Reference Exception:
+-----------------------------------
+A stale element reference exception is thrown in one of two cases, the first being more common than the second.
+The two reasons for Stale element reference are
+
+The element has been deleted entirely.
+The element is no longer attached to the DOM.
+We face this stale element reference exception when the element we are interacting is destroyed and then recreated again. When this happens the reference of the element in the DOM becomes stale. Hence we are not able to get the reference to the element.
+
+how to handle stale element reference exception
+http://makeseleniumeasy.com/2018/12/02/ways-of-handling-staleelementreferenceexception-without-pagefactory/
+http://makeseleniumeasy.com/2017/06/09/how-pagefactory-could-help-to-handle-staleelementreferenceexception/
+https://www.softwaretestingmaterial.com/stale-element-reference-exception-selenium-webdriver/
+
+Some other exceptions we usually face are as follows:
+
+WebDriverException
+TimeoutException
+NoAlertPresentException
+NoSuchWindowException
+NoSuchElementException
+
+39. How To Login Into Any Site If It Is Showing Any Authentication Pop-Up For Username And Password?
+----------------------------------------------------------------------------------------------------
+Ans - To do this we pass username and password with the URL
+http://username:password@url
+e.g. http://myUserName:myPassword@softwaretestingmaterial.com
+
+40. What are the types of waits available in Selenium WebDriver?
+----------------------------------------------------------------
+In Selenium we could see three types of waits such as Implicit Waits, Explicit Waits and Fluent Waits.
+Implicit Waits
+Explicit Waits
+Fluent Waits
+
+41. What is Implicit Wait In Selenium WebDriver?
+-------------------------------------------------
+Ans - Implicit waits tell to the WebDriver to wait for a certain amount of time before it throws an exception. Once we set the time, WebDriver will wait for the element based on the time we set before it throws an exception. The default setting is 0 (zero). We need to set some wait time to make WebDriver to wait for the required time.
+driver.manage().Timeout().implicitlyWait(TimeUnit.seconds,5)
+
+- List out 2 methods available in explicit wait?
+------------------------------------------------
+* visibilityofElementlocated, InvisibilityofElementlocated
+
+42. What is WebDriver Wait In Selenium WebDriver?
+-------------------------------------------------
+Ans - WebDriverWait is applied on a certain element with defined expected condition and time. This wait is only applied to the specified element. This wait can also throw an exception when an element is not found.
+Selenium WebDriverWait is one of the Explicit waits.
+Explicit waits are confined to a particular web element. Explicit Wait is code you define to wait for a certain condition to occur before proceeding further in the code.
+Explicit wait is of two types:
+WebDriverWait
+FluentWait
+
+WebDriverWait In Selenium:
+---------------------------
+It is applied on certain element with defined expected condition and time. This wait is only applied to the specified element. This wait can also throw exception when element is not found.
+We could avoid throwing exception in Selenium. Check this post.
+The following are the Expected Conditions that can be used in Explicit Wait
+alertIsPresent()
+elementSelectionStateToBe()
+elementToBeClickable()
+elementToBeSelected()
+frameToBeAvaliableAndSwitchToIt()
+invisibilityOfTheElementLocated()
+invisibilityOfElementWithText()
+presenceOfAllElementsLocatedBy()
+presenceOfElementLocated()
+textToBePresentInElement()
+textToBePresentInElementLocated()
+textToBePresentInElementValue()
+titleIs()
+titleContains()
+visibilityOf()
+visibilityOfAllElements()
+visibilityOfAllElementsLocatedBy()
+visibilityOfElementLocated()
+
+//WebDriverWait wait = new WebDriverWait(WebDriverRefrence,TimeOut);
+WebDriverWait wait = new WebDriverWait (driver, 20);
+wait.until(ExpectedConditions.VisibilityofElementLocated(By.xpath(""//button[@value='Save Changes']"")));
+Test script with an explanation:
+Find the sample script (using Java) mentioned below. Execute it to see the functionality.
+package waits;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+public class ExplicitWaits {
+	public static void main(String[] args) {
+		//To create a new instance of Firefox Driver
+		WebDriver driver = new FirefoxDriver();
+		//To open a website "Software Testing Material"
+		driver.get("http://www.SoftwareTestingmaterial.com");
+		//To maximize the browser window
+		driver.manage().window().maximize();
+		//This waits up to 15 seconds before throwing a TimeoutException or if it finds the element will return it in 0 - 15 seconds
+		WebDriverWait wait = new WebDriverWait (driver, 15);
+		//Title of the webpage is "Software Testing Material - A site for Software Testers"
+		wait.until(ExpectedConditions.titleIs("Software Testing Material - A site for Software Testers"));
+		//If the above condition met then the browser will be closed
+		//To close the browser
+		driver.close();
+		//Change the title "Software Testing Material - A site for Software Testers" as "xyz" in the script and try
+		//You will face an execption - Exception in thread "main" org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for title to be "Software Testing Material - A site for Software Tes". Current title: "xyz"
+	}
+}
+
+The default pooling period for implicit and explicit wait is 250 ms. Here in Fluent wait, we could change the default pooling period based on our requirement. Also we could ignore any exception while pooling element such as No Such Element exception.
+
+43. What is Fluent Wait In Selenium WebDriver?
+----------------------------------------------
+Ans - FluentWait can define the maximum amount of time to wait for a specific condition and frequency with which to check the condition before throwing an “ElementNotVisibleException” exception.
+To say in effortless manner, it tries to find the web element repeatedly at regular intervals of time until the timeout or till the object gets found.
+
+We use FluentWait commands mainly when we have web elements which sometimes visible in few seconds and some times take more time than usual. Mainly in Ajax applications. We could set the default pooling period based on our requirement. We could ignore any exception while polling an element.
+Wait wait = new FluentWait(WebDriver reference)
+.withTimeout(timeout, SECONDS)
+.pollingEvery(timeout, SECONDS)
+.ignoring(Exception.class);
+
+WebElement foo=wait.until(new Function<WebDriver, WebElement>() {
+public WebElement applyy(WebDriver driver) {
+return driver.findElement(By.id("foo"));
+}
+});
+
+Wait wait = new FluentWait<WebDriver>(driver)
+.withTimeout(45, TimeUnit.SECONDS)
+.pollingevery(5, TimeUnit.SECONDS)
+.ignoring(NoSuchElementException.class);
+
+FluentWait uses two parameters mainly – timeout value and polling frequency. In the above syntax we took time out value as 45 seconds and polling frequency as 5 seconds. The maximum amount of time (45 seconds) to wait for a condition and the frequency (5 seconds) to check the success or failure of a specified condition. If the element is located with in this time frame it will perform the operations else it will throw an “ElementNotVisibleException”
+
+Test script with an explanation – Selenium FluentWait:
+Find the sample script (using Java) mentioned below. Execute it to see the functionality of a Selenium FluentWait.
+
+package waits;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.FluentWait; //FluentWait is a Class and it is a part of this package
+import org.testng.annotations.Test;
+
+import com.google.common.base.Function;
+
+public class FluentWaitClass {
+	@Test
+	public static void fluentWaitMethod(){
+		System.setProperty("webdriver.gecko.driver","D://Selenium Environment//Drivers//geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://softwaretestingplace.blogspot.com/2017/02/selenium-fluent-wait.html");
+		driver.findElement(By.xpath("//*[@id='post-body-5280210221385817166']/div[1]/button")).click();
+		
+		
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	       .withTimeout(30, TimeUnit.SECONDS)
+	       .pollingEvery(5, TimeUnit.SECONDS)
+	       .ignoring(NoSuchElementException.class);
+
+		WebElement element = wait.until(new Function<WebDriver, WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				WebElement element = driver.findElement(By.xpath("//*[@id='softwareTestingMaterial']"));
+				String getTextOnPage = element.getText();
+				if(getTextOnPage.equals("Software Testing Material - DEMO PAGE")){
+					System.out.println(getTextOnPage);
+					return element;
+				}else{
+					System.out.println("FluentWait Failed");
+					return null;
+				}
+			}
+		});
+	}
+}
+
+44. How to input text in the text box using Selenium WebDriver?
+---------------------------------------------------------------
+Ans - By using sendKeys() method
+WebDriver driver = new FirefoxDriver();
+driver.get("https://www.gmail.com");
+driver.findElement(By.xpath("xpath")).sendKeys("Software Testing Material Website");
+
+45. How to input text in the text box without calling the sendKeys()?
+---------------------------------------------------------------------
+Ans - // To initialize js object
+JavascriptExecutor JS = (JavascriptExecutor)webdriver;
+// To enter username
+JS.executeScript("document.getElementById('User').value='SoftwareTestingMaterial.com'");
+// To enter password
+JS.executeScript("document.getElementById('Pass').value='tester'");
+
+46. How to clear the text in the text box using Selenium WebDriver?
+-------------------------------------------------------------------
+Ans - By using clear() method
+WebDriver driver = new FirefoxDriver();
+driver.get("https://www.gmail.com");
+driver.findElement(By.xpath("xpath_of_element1")).sendKeys("Software Testing Material Website");
+driver.findElement(By.xpath("xpath_of_element1")).clear();
+
+47. How to get a text of a web element?
+---------------------------------------
+Ans - By using getText() method
+
+package softwareTestingMaterial;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+public class TestTestTest {
+
+	@Test
+	public void testmethod(){
+		System.setProperty("webdriver.chrome.driver", "D:\\Selenium Environment\\Drivers\\chromedriver.exe");
+	  	WebDriver driver = new ChromeDriver();
+	  	driver.get("https://www.google.com");
+	  	String availableText = driver.findElement(By.xpath("//*[@id='gbw']/div/div/div[1]/div[1]/a")).getText();
+	  	System.out.println("Text Available is :"+availableText);
+	}
+}
+
+48. How to get an attribute value using Selenium WebDriver?
+------------------------------------------------------------
+Ans - By using getAttribute(value);
+
+It returns the value of the attribute passed as a parameter.
+Eg:
+HTML: 
+<input name="nameSelenium" value="valueSelenium">SoftwareTestingMaterial</input>
+Selenium Code:
+String attributeValue = driver.findElement(By.name("nameSelenium")).getAttribute("value");
+System.out.println("Available attribute value is :"+attributeValue);
+Output: valueSelenium
+
+49. How to click on a hyperlink using Selenium WebDriver?
+---------------------------------------------------------
+Ans - We use click() method in Selenium to click on the hyperlink
+driver.findElement(By.linkText(“Software Testing Material Website”)).click();
+
+50. How to submit a form using Selenium WebDriver?
+--------------------------------------------------
+Ans - We use “submit” method on element to submit a form
+driver.findElement(By.id("form_1")).submit();
+
+51. How to press ENTER key on text box In Selenium WebDriver?
+-------------------------------------------------------------
+To press ENTER key using Selenium WebDriver, We need to use Selenium Enum Keys with its constant ENTER.
+driver.findElement(By.xpath("xpath")).sendKeys(Keys.ENTER);
+
+52. How to pause a test execution for 5 seconds at a specific point?
+--------------------------------------------------------------------
+Ans - By using java.lang.Thread.sleep(long milliseconds) method we could pause the execution for a specific time. To pause 5 seconds, we need to pass parameter as 5000 (5 seconds)
+Thread.sleep(5000)
+
+53. Is Selenium Server needed to run Selenium WebDriver Scripts?
+----------------------------------------------------------------
+Ans - When we are distributing our Selenium WebDriver scripts to execute using Selenium Grid, we need to use Selenium Server.
+
+54. What happens if I run this command. driver.get(“www.softwaretestingmaterial.com”) ;
+----------------------------------------------------------------------------------------
+Ans - An exception is thrown. We need to pass HTTP protocol within driver.get() method.
+driver.get("https://www.softwaretestingmaterial.com");
+
+55. What is the alternative to driver.get() method to open an URL using Selenium WebDriver?
+-------------------------------------------------------------------------------------------
+Ans - Alternative method to driver.get(“url”) method is driver.navigate.to(“url”)
+
+56. What is the difference between driver.get() and driver.navigate.to(“url”)?
+------------------------------------------------------------------------------
+Ans - driver.get(): To open an URL and it will wait till the whole page gets loaded.
+driver.navigate.to(): To navigate to an URL and It will not wait till the whole page gets loaded.
+driver.get() take the url as String but driver.navigate.to() accept both String and URL object.
+
+import java.net.URL;
+URL my URL = new URL("https://www.softwaretestingmaterial.com');
+driver.navigate.to(myURL);
+
+57. Can I navigate back and forth in a browser in Selenium WebDriver?
+----------------------------------------------------------------------
+Ans - We use Navigate interface to do navigate back and forth in a browser. It has methods to move back, forward as well as to refresh a page.
+
+driver.navigate().forward(); – to navigate to the next web page with reference to the browser’s history
+driver.navigate().back(); – takes back to the previous webpage with reference to the browser’s history
+driver.navigate().refresh(); – to refresh the current web page thereby reloading all the web elements
+driver.navigate().to(“url”); – to launch a new web browser window and navigate to the specified URL
+
+58. What are the different types of navigation commands?
+--------------------------------------------------------
+Ans - Refer above question (Can I navigate back and forth in a browser)
+
+59. How to fetch the current page URL in Selenium?
+---------------------------------------------------
+Ans - To fetch the current page URL, we use getCurrentURL()
+
+60. How can we maximize browser window in Selenium?
+----------------------------------------------------
+Ans  - To maximize browser window in selenium we use maximize() method. This method maximizes the current window if it is not already maximized
+driver.manage().window().maximize();
+
+61. How to delete cookies in Selenium?
+--------------------------------------
+Ans - To delete cookies we use deleteAllCookies() method
+driver.manage().deleteAllCookies();
+
+62. What are the ways to refresh a browser using Selenium WebDriver?
+-------------------------------------------------------------------
+Ans  - There are multiple ways to refresh a page in selenium
+
+Using driver.navigate().refresh() command
+Using driver.get(“URL”) on the current URL or using driver.getCurrentUrl()
+Using driver.navigate().to(“URL”) on the current URL or driver.navigate().to(driver.getCurrentUrl());
+Using sendKeys(Keys.F5) on any textbox on the webpage
+
+63. What is the difference between driver.getWindowHandle() and driver.getWindowHandles() in Selenium WebDriver?
+----------------------------------------------------------------------------------------------------------------
+Ans  - driver.getWindowHandle() – It returns a handle of the current page (a unique identifier). Retuens unique ID
+driver.getWindowHandles() – It returns a set of handles of the all the pages available. It will return the count of the window with ID. Returns the Set collection of Unique id in String format
+Set<String> s = driver.getWindowHandles()
+It = s.iterator();
+It.next(); // it will move to 0th index
+It.next(); // it will move to 1st index
+String Window3rd = It.next(); // it wil move to 3rd window
+driver.switchTo().window(Window3rd)
+
+OR
+
+Set<String> windowsID = driver.getWindowHandles()
+List<String> windowsList = new ArrayList(windowsID)
+String parentID = windowsList.get(0)
+String childID = windowsList.get(1)
+driver.switchTo().window(childID)
+System.out.println(driver.getTitle()); // -- it will display the child windows title in the console.
+
+// Other approach -----
+//---------------------
+Set<String> windowsID = driver.getWindowHandles()
+for(String winID:windowsID)
+{
+	String title = driver.switchTo().window(winID).getTitle();
+	if(title.equals("parent Window Title"))
+	{
+		System.out.println(driver.getCurrentURL());
+	}
+
+}
+
+driver.close() //--- it will close the single window which it is currently refers to
+driver.quit() //-- it will closee all the windows
+
+64. What is the difference between driver.close() and driver.quit() methods?
+-----------------------------------------------------------------------------
+Ans  - Purpose of these two methods (driver.close and driver.quit) is almost same. Both allow us to close a browser but still, there is a difference.
+
+driver.close(): To close current WebDriver instance
+driver.quit(): To close all the opened WebDriver instances
+
+65. What is the difference between driver.findElement() and driver.findElements() commands?
+The difference between driver.findElement() and driver.findElements() commands is-
+
+findElement() returns a single WebElement (found first) based on the locator passed as parameter. Whereas findElements() returns a list of WebElements, all satisfying the locator value passed.
+Syntax of findElement()-
+WebElement textbox = driver.findElement(By.id(“textBoxLocator”));
+Syntax of findElements()-
+List <WebElement> elements = element.findElements(By.id(“value”));
+Another difference between the two is- if no element is found then findElement() throws NoSuchElementException whereas findElements() returns a list of 0 elements.
+
+66. What Is The Difference Between MaxSessions Vs. MaxInstances Properties in Selenium Grid?
+MaxInstances is the no. of browser instances of the same version of the browser that can run on the remote machine.
+
+Let’s see an example below:
+
+-browser browserName=InternetExplorer,version=6,maxInstances=2,platform=WINDOWS
+-browser browserName=firefox,version=11,maxInstances=2,platform=WINDOWS
+
+As per the above example, it will allow us to run 4 instances of both IE and Firefox at the same time (in parallel) in a remote machine.
+
+MaxSession says how many browsers, independent of the type & version, can run in parallel on the remote machine.
+
+It supersedes the “MaxInstances” setting.
+
+If maxSession=1 then no more than a single browser would run. If maxSession=2 then any of the below combinations can run at a time irrespective of what MaxInstances we have defined.
+2 Internet Explorer
+2 Firefox
+1 Internet Explorer + 1 Firefox
+
+67. What is the difference between setSpeed () and sleep () methods?
+Both sleep() and setSpeed() are used to delay the execution speed.
+
+setSpeed(): It set up speed that will apply a delay time before every Selenium operation.
+
+Example: setSpeed(“5000”) – It waits for 5 seconds
+
+sleep(): It set up wait only for once when called in our Selenium script.
+
+Example: sleep(5000) – It waits for 5 seconds
+
+79. How to find whether an element is displayed on the web page? 
+
+WebDriver facilitates the user with the following methods to check the visibility of the web elements. These web elements can be buttons, drop boxes, checkboxes, radio buttons, labels etc.
+
+1. isDisplayed()
+	boolean elePresent = driver.findElement(By.xpath("xpath")).isDisplayed();
+2. isSelected()
+	boolean eleSelected= driver.findElement(By.xpath("xpath")).isSelected();
+3. isEnabled()
+	boolean eleEnabled= driver.findElement(By.xpath("xpath")).isEnabled();
+	
+68. How to capture Screenshot in Selenium WebDriver?
+Test cases may fail while executing the test scripts. While we are executing the test cases manually we just take a screenshot and place in a result repository. The same can be done by using Selenium WebDriver.
+
+Some of the scenarios we may need to capture a screenshot using Selenium WebDriver are
+
+i. Application issues
+ii. Assertion Failure
+iii. Difficulty to find Webelements on the web page
+iv. Timeout to find Webelements on the web page
+
+Selenium provides an interface called TakesScreenshot which has a method getScreenShotAs which can be used to take a screenshot of the application under test.
+
+In Selenium 3, we may face few issues while capturing Screenshots. To overcome we use aShot utility. Click on below links to see posts related to the normal way of capturing a screenshot and capturing a screenshot using aShot utility.
+
+Capture screenshot using Selenium WebDriver - https://www.softwaretestingmaterial.com/capture-screenshot-using-selenium-webdriver/
+
+Full Page Screenshot using aShot utility - https://www.softwaretestingmaterial.com/how-to-capture-full-page-screenshot-using-selenium-webdriver/
+
+Failed Test Cases Screenshot - https://www.softwaretestingmaterial.com/capture-screenshot-of-failed-test-cases-using-selenium-webdriver-2/	
+	
+69. How to mouse hover on a web element using WebDriver?
+
+WebElement ele = driver.findElement(By.xpath("xpath"));
+//Create object 'action' of an Actions class
+Actions action = new Actions(driver);
+//Mouseover on an element
+action.moveToElement(ele).perform();
+	
+70. How can we handle Web-based Pop-ups or how to find more than one web element in the list?lerts in Selenium?
+To handle Web-based alerts or popups, we need to do switch to the alert window and call Selenium WebDriver Alert API methods.
+
+dismiss(): To click on Cancel button.
+accept(): To Click on OK button.
+getText(): To get the text which is present on the Alert.
+sendKeys(): To enter the text into the alert box.
+To Authenticate by passing the credentials
+Alert alert = driver.switchTo().alert();
+alert.authenticateUsing(Credentials credentials)
+
+Practical Example - https://www.softwaretestingmaterial.com/javascript-alerts-popups-selenium/
+
+71. How can we handle windows based pop up?
+Selenium doesn’t support windows based applications. It is an automation testing tool which supports only web application testing. We could handle windows based popups in Selenium using some third party tools such as AutoIT, Robot class etc.
+
+72. How to handle hidden elements in Selenium WebDriver?
+We can handle hidden elements by using javaScript executor
+(JavascriptExecutor(driver)).executeScript("document.getElementsByClassName(ElementLocator).click();");
+
+73. How can you find Broken Links in a page using Selenium WebDriver?
+Details are here - https://www.softwaretestingmaterial.com/broken-links-using-selenium/
+If https response code is 404
+
+74. How to find more than one web element in the list?
+// To store the list
+List <WebElement> eleList = driver.findElements(By.xpath("xpath"));
+// To fetch the size of the list
+int listSize = eleList.size();
+//for loop
+for (int i=0; i<listSize; i++)
+{
+	// Clicking on each link
+	links.get(i).click();
+	// Navigating back to the previous page that stores the links
+	driver.navigate().back();
+}
+
+75. How to read a JavaScript variable in Selenium WebDriver?
+By using JavascriptExecutor
+
+// To initialize the JS object.
+JavascriptExecutor JS = (JavascriptExecutor) webdriver;
+// To get the site title.
+String title = (String)JS.executeScript("return document.title");
+System.out.println("Title of the webpage : " + title);
+
+76. What is JavaScriptExecutor and in which cases JavaScriptExecutor will help in Selenium automation?
+In general, we click on an element using click() method in Selenium.
+
+For example:
+driver.findElement(By.id("Id Value")).click();
+Sometimes web controls don’t react well against selenium commands and we may face issues with the above statement (click()). To overcome such kind of situation, we use JavaScriptExecutor interface.
+
+It provides a mechanism to execute Javascript through Selenium driver. It provides “executescript” & “executeAsyncScript” methods, to run JavaScript in the context of the currently selected frame or window.
+
+There is no need to write a separate script to execute JavaScript within the browser using Selenium WebDriver script. Just we use predefined interface named ‘Java Script Executor’. We need to import the JavascriptExecutor package in the script.
+
+Package:
+import org.openqa.selenium.JavascriptExecutor;
+
+Syntax:
+JavascriptExecutor js = (JavascriptExecutor) driver;  
+js.executeScript(Script,Arguments);
+
+Script – The JavaScript to execute
+Arguments – The arguments to the script(Optional). May be empty.
+Returns – One of Boolean, Long, String, List, WebElement, or null.
+
+Let’s see some scenarios we could handle using this Interface:
+
+1. To type Text in Selenium WebDriver without using sendKeys() method
+2. To click a Button in Selenium WebDriver using JavaScript
+3. To handle Checkbox
+4. To generate Alert Pop window in selenium
+5. To refresh browser window using Javascript
+6. To get innertext of the entire webpage in Selenium
+7. To get the Title of our webpage
+8. To get the domain
+9. To get the URL of a webpage
+10. To perform Scroll on an application using  Selenium
+11. To click on a SubMenu which is only visible on mouse hover on Menu
+12. To navigate to different page using Javascript
+
+77. How do you read test data from excels?
+Test data can efficiently be read from excel using JXL or POI API. POI API has many advantages than JXL.
+Click here to see a practical example of using Apache POI. https://www.softwaretestingmaterial.com/handling-excel-files-using-apache-poi/
+
+78. Is it possible to automate the captcha using Selenium?
+No, It’s not possible to automate captcha and bar code reader.
+
+79. Can You Use Selenium For Rest API Testing Or Web Services Testing?
+Simple answer for this is Selenium is not a tool for API Testing. It automates web browsers. Rest API & Web Services contains no UI. So we cannot automate using Selenium.
+https://www.softwaretestingmaterial.com/api-testing-interview-questions/
+
+
+80. How to handle Ajax calls in Selenium WebDriver?
+Handling AJAX calls is one of the common issues when using Selenium WebDriver. We wouldn’t know when the AJAX call would get completed and the page has been updated. In this post, we see how to handle AJAX calls using Selenium.
+
+AJAX stands for Asynchronous JavaScript and XML. AJAX allows the web page to retrieve small amounts of data from the server without reloading the entire page. AJAX sends HTTP requests from the client to server and then process the server’s response without reloading the entire page. To handle AJAX controls, wait commands may not work. It’s just because the actual page is not going to refresh.
+
+When you click on a submit button, the required information may appear on the web page without refreshing the browser. Sometimes it may load in a second and sometimes it may take longer. We have no control over loading time. The best approach to handle this kind of situations in selenium is to use dynamic waits (i.e. WebDriverWait in combination with ExpectedCondition)
+
+Some of the methods which are available are as follows:
+
+1. titleIs() – The expected condition waits for a page with a specific title.
+wait.until(ExpectedConditions.titleIs(“Deal of the Day”));
+
+2. elementToBeClickable() – The expected condition waits for an element to be clickable i.e. it should be present/displayed/visible on the screen as well as enabled.
+wait.until(ExpectedConditions.elementToBeClickable(By.xpath("xpath")));
+
+3. alertIsPresent() – The expected condition waits for an alert box to appear.
+wait.until(ExpectedConditions.alertIsPresent()) !=null);
+
+4. textToBePresentInElement() – The expected condition waits for an element having a certain string pattern.
+wait.until(ExpectedConditions.textToBePresentInElement(By.id(“title’”), “text to be found”));
+
+81. List some scenarios which we cannot automate using Selenium WebDriver?
+1. Bitmap comparison is not possible using Selenium WebDriver
+2. Automating Captcha is not possible using Selenium WebDriver
+3. We can not read bar code using Selenium WebDriver
+
+81. What is Object Repository in Selenium WebDriver?
+Object Repository is used to store element locator values in a centralized location instead of hard coding them within the scripts. We do create a property file (.properties) to store all the element locators and these property files act as an object repository in Selenium WebDriver.
+
+83. How you build Object Repository in your project?
+In QTP, there is an Object Repository concept. When a user records a test, the objects and its properties are captured by default in an Object Repository. QTP uses this Object Repository to play back the scripts. Coming to Selenium, there is no default Object Repository concept. It doesn’t mean that there is no Object Repository in Selenium. Even though there is no default one still we could create our own. In Selenium, we call objects as locators (such as ID, Name, Class Name, Tag Name, Link Text, Partial Link Text, XPath, and CSS). Object repository is a collection of objects. One of the ways to create Object Repository is to place all the locators in a separate file (i.e., properties file). But the best way is to use Page Object Model. In the Page Object Model Design Pattern, each web page is represented as a class. All the objects related to a particular page of a web application are stored in a class.
+
+84. What is Page Object Model in Selenium?
+Page Object Model is a Design Pattern which has become popular in Selenium Test Automation. It is widely used design pattern in Selenium for enhancing test maintenance and reducing code duplication. Page object model (POM) can be used in any kind of framework such as modular, data-driven, keyword driven, hybrid framework etc.  A page object is an object-oriented class that serves as an interface to a page of your Application Under Test(AUT). The tests then use the methods of this page object class whenever they need to interact with the User Interface (UI) of that page. The benefit is that if the UI changes for the page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI is located in one place.
+
+85. What is Page Factory? 
+We have seen that ‘Page Object Model’ is a way of representing an application in a test framework. For every ‘page’ in the application, we create a Page Object to reference the ‘page’ whereas a ‘Page Factory’ is one way of implementing the ‘Page Object Model’.
+
+86. What is the difference between Page Object Model (POM) and Page Factory?
+Page Object is a class that represents a web page and hold the functionality and members.
+Page Factory is a way to initialize the web elements you want to interact with within the page object when you create an instance of it.
+
+87. What are the advantages of Page Object Model Framework?
+Code reusability – We could achieve code reusability by writing the code once and use it in different tests.
+
+Code maintainability – There is a clean separation between test code and page specific code such as locators and layout which becomes very easy to maintain code. Code changes only on Page Object Classes when a UI change occurs. It enhances test maintenance and reduces code duplication.
+
+Object Repository – Each page will be defined as a java class. All the fields in the page will be defined in an interface as members. The class will then implement the interface.
+
+Readability – Improves readability due to clean separation between test code and page specific code
+
+101. How can you use the Recovery Scenario in Selenium WebDriver?
+By using “Try Catch Block” within Selenium WebDriver Java tests.
+try {
+     driver.get("www.softwaretestingmaterial.com");
+}catch(Exception e){
+     System.out.println(e.getMessage());
+}
+
+102. How to Upload a file in Selenium WebDriver?
+There are two cases which are majorly used to upload a file in Selenium WebDriver such as using SendKeys Method and using AutoIT Script.
+Example - https://www.softwaretestingmaterial.com/upload-file-using-autoit/
+
+103. How to Download a file in Selenium WebDriver?
+By using AutoIT script, we could download a file in Selenium WebDriver.
+
+Example - https://www.softwaretestingmaterial.com/download-file-using-autoit/
+
+104. How to run Selenium WebDriver Test from the command line?
+Run Java Program using Command Prompt - https://www.softwaretestingmaterial.com/run-java-program-using-command-prompt/
+Run TestNG using Command Prompt - https://www.softwaretestingmaterial.com/run-testng-using-command-prompt/
+
+105. How to switch between frames in Selenium?
+By using the following code, we could switch between frames.
+driver.switchTo().frame();
+
+106. How to connect a Database in selenium?
+As we all know Selenium WebDriver is a tool to automate User Interface. We could only interact with Browser using Selenium WebDriver.
+
+We use JDBC Driver to cpackage dummy;
+Example - https://www.softwaretestingmaterial.com/mssql-database-testing-using-selenium/
+
+107. How To Resize Browser Window Using Selenium WebDriver?
+To resize the browser window to particular dimensions, we use ‘Dimension’ class to resize the browser window.
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.Test;
+
+public class ResizeBrowser {
+	
+    @Test	
+    public void launchBrowser() {
+    	System.setProperty("webdriver.gecko.driver","D://Selenium Environment//Drivers//geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();
+        driver.navigate().to("https://www.softwaretestingmaterial.com");
+        System.out.println(driver.manage().window().getSize());
+        //Create object of Dimensions class
+        Dimension d = new Dimension(480,620);
+        //Resize the current window to the given dimension
+        driver.manage().window().setSize(d);
+        System.out.println(driver.manage().window().getSize());
+     }	
+}onnect the Database in Selenium (While using Java Programming Language).
+
+108. How To Scroll Web Page Down Or UP Using Selenium WebDriver?
+JavaScript scrollBy() method scrolls the document by the specified number of pixels.
+window.scrollBy(xnum, ynum)
+To Scroll Web page Down using Selenium WebDriver:
+In the below example we use 250 pixels for vertical scrolling in order to see how scroll method works
+package softwareTestingMaterial;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class HandleScroll {
+	
+	@Test
+	public void scrollDown(){
+		System.setProperty("webdriver.gecko.driver","D://Selenium Environment//Drivers//geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.navigate().to("https://www.softwaretestingmaterial.com");
+		//to perform Scroll on application using  Selenium
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)", "");
+	}
+}
+
+To scroll to the Bottom of the Web Page using Selenium WebDriver:
+package softwareTestingMaterial;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class HandleScroll {
+	
+	@Test
+	public void scrollDown(){
+		System.setProperty("webdriver.gecko.driver","D://Selenium Environment//Drivers//geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.navigate().to("https://www.softwaretestingmaterial.com");
+		//to perform Scroll on application using  Selenium
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	}
+}
+
+To Scroll Web page Up using Sleneium WebDriver:
+
+package softwareTestingMaterial;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class HandleScroll {
+	
+	@Test
+	public void scrollDown(){
+		System.setProperty("webdriver.gecko.driver","D://Selenium Environment//Drivers//geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.navigate().to("https://www.softwaretestingmaterial.com");
+		//to perform Scroll on application using  Selenium
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-250)", "");
+	}
+}
+
+112. How To Highlight Element Using Selenium WebDriver?
+By using JavascriptExecutor interface, we could highlight the specified element
+package softwareTestingMaterial;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class Highlight {
+
+@Test
+	public void highlightElement() {
+	System.setProperty("webdriver.gecko.driver", "D:\\Selenium Environment\\Drivers\\geckodriver.exe");
+        //Instantiating driver object
+	WebDriver driver = new FirefoxDriver();
+        //To launch gmail.com
+	driver.get("https://www.gmail.com");
+        //Collects the webelement
+	WebElement ele = driver.findElement(By.xpath("//*[@id='Email']"));
+        //Create object of a JavascriptExecutor interface
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+        //use executeScript() method and pass the arguments 
+        //Here i pass values based on css style. Yellow background color with solid red color border. 
+	js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", ele);
+	}
+}
+
+package softwareTestingMaterial;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class HighlighterClass {
+	
+	@Test
+	public void highlighterElement() {
+		
+		System.setProperty("webdriver.gecko.driver", "D:\\Selenium Environment\\Drivers\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.gmail.com");
+		WebElement ele = driver.findElement(By.xpath("//*[@id='Email']"));
+                //Call the highlighterMethod and pass webdriver and WebElement which you want to highlight as arguments.
+		highLighterMethod(driver,ele);
+		ele.sendKeys("SoftwareTestingMaterial.com");
+	}
+	
+        //Creating a custom function
+	public void highLighterMethod(WebDriver driver, WebElement element){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
+	}
+}
+
+
+/----- Most Tricky Selenium interview questions 
+
+1. How do you launch browser in a perticula dimension? / what is the use of ChromeOptions?
+Ans - 1. We can use ChromeOptions class to customize nad configure a ChromeDriver session.
+2. ChromeOption help us perform various operations like opening chrome in headless browser mode, set browser size, open browser in maximized mode etc.
+ChromeOptions opts = new ChromeOptions();
+opts.addArguments("--start-maximized");
+opts.addArguments("--window--position=1920,1080");
+
+2. What is the use of the desired capabilities?
+DesiredCapabilities is a class in Selenium that stores key-value pairs representing browser properties and configurations. It was traditionally used to:
+- Specify browser type (e.g., Chrome, Firefox)
+- Define browser version
+- Set platform (Windows, macOS, Linux)
+- Enable or disable browser features (e.g., pop-ups, SSL certificates)
+- Pass custom settings to browser drivers (e.g., ChromeOptions, FirefoxProfile)
+
+🧪 Example (Deprecated in Selenium 4)
+DesiredCapabilities caps = new DesiredCapabilities();
+caps.setBrowserName("chrome");
+caps.setPlatform(Platform.WINDOWS);
+WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
+
+These are more type-safe and flexible. For example:
+ChromeOptions options = new ChromeOptions();
+options.setCapability("browserVersion", "114");
+options.setCapability("platformName", "Windows 10");
+
+🔐 Key Benefits
+- Flexibility: Customize browser behavior for different test scenarios.
+- Scalability: Essential for Selenium Grid and cloud-based testing platforms.
+- Compatibility: Works with Appium for mobile automation.
+
+Questions: why is WebDriver called as an interface
+1. Cross-Browser Compatibility
+- WebDriver provides a standard set of methods (like get(), click(), findElement()) that all browser drivers must implement.
+- This allows you to write test scripts once and run them on Chrome, Firefox, Edge, Safari, etc., without changing your code.
+- For example:
+WebDriver driver = new ChromeDriver(); // or FirefoxDriver, EdgeDriver
+driver.get("https://example.com");
+
+2. Flexibility and Extensibility
+- By using an interface, Selenium allows new browser drivers to be added easily.
+- Any new driver just needs to implement the WebDriver interface to become compatible with the Selenium ecosystem.
+3. Abstraction and Loose Coupling
+- Interfaces promote abstraction — you interact with the browser through a high-level API without worrying about the internal implementation.
+- This leads to loose coupling, making your code more maintainable and testable.
+4. Polymorphism
+- Java interfaces enable polymorphism, allowing you to switch between different driver implementations at runtime:
+WebDriver driver;
+if (browser.equals("chrome")) {
+    driver = new ChromeDriver();
+} else {
+    driver = new FirefoxDriver();
+}
+
+Question : what are some of the methods which WebDriver interface provides
+
+get(String url) - Opens the specified URL in the browser.
+getCurrentUrl() - Returns the current page URL.
+getTitle() - Retrieves the title of the current page.
+getPageSource() - Returns the entire HTML source of the current page.
+close() - Closes the current browser window.
+quit() - Closes all browser windows and ends the WebDriver session.
+getWindowHandle() - Returns a unique identifier for the current window.
+getWindowHandles() - Returns a set of window handles for all open windows.
+switchTo() - Switches focus to a different frame, window, or alert.
+navigate() - Provides navigation methods like forward, back, refresh.
+manage() - Provides access to browser settings like cookies, timeouts, and window size. 
+findElement(By by) - Locates a single web element using a locator strategy.
+findElements(By by) - Locates multiple elements matching the locator strategy.
+
+
+question : If you have multiple WebElement with the same name or ID in a webpage what will findelement do in this case?
+
+Findelement always click / perform actions in the firts matching webelement because findelement will return the first matching criteria
+
+Questions : how do you verify whether a webpage contains 404 error code during page launch?
+driver.get("https://example.com/nonexistentpage");
+
+if (driver.getPageSource().contains("404") || driver.getTitle().contains("404")) {
+    System.out.println("Likely a 404 error page");
+}
+
+Questions : how does your selenium test script interacts with browser? how communication channel is established?
+----------------------------------------------------------------------------------------------------------------
+
+WebDriver driver = new ChromeDriver();
+driver.get("https://example.com");
+
+- Each browser has its own driver:
+- Chrome → ChromeDriver
+- Firefox → GeckoDriver
+- Edge → EdgeDriver
+- These drivers act as servers that listen for commands from Selenium.
+
+Communication Protocol
+- Selenium uses either:
+- JSON Wire Protocol (older versions)
+- W3C WebDriver Protocol (standardized in Selenium 4+)
+- These protocols define how commands (like click, navigate, findElement) are formatted and transmitted.
+JSON Wire Protocolis a RESTful webservice using jso over http
+
+HTTP Communication
+- Selenium sends HTTP requests (e.g., POST /session, GET /element) to the browser driver.
+- The driver translates these into native browser actions using the browser’s automation APIs (like Chrome DevTools Protocol for Chrome).
+
+Browser Execution
+- The browser driver executes the command in the actual browser instance.
+- It then sends the result (success, failure, or data) back to Selenium via HTTP response.
+
+Visual Flow
+[Test Script] → [Selenium WebDriver API] → [Browser Driver] → [Browser]
+       ↑                                               ↓
+   Receives result ← HTTP Response ← Executes command ←
+
+ Note - =====
+ in the pageFactory there is an annotation called @CacheLookup it is actually storing the webelement in the memory so that everytime we cannot saerch in the doms. But this should be used when there is Ajax calls in the webpage os staleelementreferenceexception.
+ 
+ 
+ AjaxElementLocatorFactory Class
+ timeout for a WebElement can be assign to the Object page class with the help of AjaxElementLocatorFactory 
+ 
+AjaxElementLocatorFactory factory = new AjaxElementLocatorFactory(driver, 30);
+PageFactory.initElements(factory,this);

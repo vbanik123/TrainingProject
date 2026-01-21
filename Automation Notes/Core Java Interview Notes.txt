@@ -1,0 +1,22 @@
+1. What is JDK?
+Ans - The Java Developement Kit(JDK) is a software developement environment used for developing java applications and applets. It includes Java Runtime environemnt(JRE), an Interpreter/Loader, a compiler(javac), an archiever(jar), a documentation generator(javadoc) and other tools needed in java developement.
+
+2. What is JRE?
+Ans - The Java Runtime Environment(JRE) is a set of software tools for developement of java applications. It combines the Java Virtual Machine(JVM), platform core classes and supporting libraries. JRE is the part of the JDK but can be downloaded seperately. JRE was originally developed by Sun Microsystems Inc., a wholly owned subsidiary or Oracle Corporation.
+
+3. What is java?
+Ans - Java is a programming language and cimputing platform first release by Sun Microsystem in 1995. There are lots of applications and website that will not work unless you have java installed, and more are created everyday. Java is fast, secure and reliable.
+
+4. Important Features of Java
+Ans - 
+1 .It sis very simple to use.
+2. Platform Independent.
+3. Architectural Neutral - A language or technology is said to be Architectural Neutral which can run on any available processors in the real world without considering their developement and compilation.
+4. portable - If any language supports platform independent and architectural neutral feature know as portable.
+5. Multithreading - A flow of control is known as a thread. When any language executes multiple thread at a time that language is known as Multithreaded language. Java is a multi threaded language.
+6. Distributed - Using this language we can create distributed applications. In distributed application multiple client system depends on multiple server systems so that even problem occured in one server will never be reflected on any client system.
+7. Networked - It is mainly designed for web based application, J2EE is used for developing network based application.
+8. Robust - Simply means of robust are strong. It is robust or strong Programing language because of its capability to handle run time error , autometic garbage collection.
+9. Dynamic  - Its support dynamic memory allocation due to this memory wastage is reduce and improve performance of the application.
+10. Secured - It is more secure language compare to other language. In this language all code is covered in byte code after compilation which is not readable by human.
+11. Object Oriented - It supports OOP's concept because of this it is more secure language.

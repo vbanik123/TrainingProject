@@ -1,0 +1,211 @@
+Most Frequently Asked Cucumber Interview Questions
+Q #1) Explain Cucumber shortly.
+
+Answer: Cucumber is a tool that is based on Behavior Driven Development (BDD) methodology.
+
+The main aim of the Behavior Driven Development framework is to make various project roles such as Business Analysts, Quality Assurance, Developers, etc., understand the application without diving deep into the technical aspects.
+
+Q #2) What language is used by Cucumber?
+
+Answer: Gherkin is the language that is used by the Cucumber tool. It is a simple English representation of the application behavior. Gherkin language uses several keywords to describe the behavior of applications such as Feature, Scenario, Scenario Outline, Given, When, Then, etc.
+
+Q #3) What is meant by a feature file?
+
+Answer: A feature file must provide a high-level description of an Application Under Test (AUT). The first line of the feature file must start with the keyword ‘Feature’ followed by the description of the application under test.
+
+A feature file may include multiple scenarios within the same file. A feature file has the extension .feature.
+
+Q #4) What are the various keywords that are used in Cucumber for writing a scenario?
+
+Answer: Mentioned below are the keywords that are used for writing a scenario:
+
+Given
+When
+Then
+And
+Q #5) What is the purpose of a Scenario Outline in Cucumber?
+
+Answer: Scenario outline is a way of parameterization of scenarios. This is ideally used when the same scenario needs to be executed for multiple sets of data, however, the test steps remain the same. Scenario Outline must be followed by the keyword ‘Examples’, which specify the set of values for each parameter.
+
+Q #6) What programming language is used by Cucumber?
+
+Answer: Cucumber tool provides support for multiple programming languages such as Java, .Net, Ruby etc. It can also be integrated with multiple tools such as Selenium, Capybara, etc.
+
+Q #7) What is the purpose of the Step Definition file in Cucumber?
+
+Answer: A step definition file in Cucumber is used to segregate the feature files from the underlying code. Each step of the feature file can be mapped to a corresponding method on the Step Definition file.
+
+While feature files are written in an easily understandable language like, Gherkin, Step Definition files are written in programming languages such as Java, .Net, Ruby, etc.
+
+Q #8) What are the major advantages of the Cucumber framework?
+
+Answer: Given below are the advantages of the Cucumber Gherkin framework that make Cucumber an ideal choice for rapidly evolving Agile methodology in today’s corporate world.
+
+Cucumber is an open-source tool.
+Plain Text representation makes it easier for non-technical users to understand the scenarios.
+It bridges the communication gap between various project stakeholders such as Business Analysts, Developers, and Quality Assurance personnel.
+Automation test cases developed using the Cucumber tool are easier to maintain and understand as well.
+Easy to integrate with other tools such as Selenium and Capybara.
+Q #9) Provide an example of a feature file using the Cucumber framework.
+
+Answer: Following is an example of a feature file for the scenario ‘Login into the application’:
+
+Feature: Login to the application under test.
+Scenario: Login to the application.
+
+Open the Chrome browser and launch the application.
+When the user enters the username onto the UserName field.
+And User enters the password into the Password field.
+When the user clicks on the Login button.
+Then validate if the user login is successful.
+Q #10) Provide an example of a Scenario Outline using the Cucumber framework.
+
+Answer: The following is an example of a Scenario Outline keyword for the scenario ‘Upload a file’. The number of parameter values to be included in the feature file is based on the tester’s choice.
+
+Scenario Outline: Upload a file
+
+Given that the user is on upload file screen.
+When a user clicks on the Browse button.
+And user enters <filename> onto the upload textbox.
+And user clicks on the enter button.
+Then verify that the file upload is successful.
+
+Example:
+
+|filename|
+|file1|
+|file2|
+
+Q #11) What is the purpose of the Behaviour Driven Development (BDD) methodology in the real world?
+
+Answer: BDD is a methodology to understand the functionality of an application in the simple plain text representation.
+
+The main aim of the Behavior Driven Development framework is to make various project roles such as Business Analysts, Quality Assurance, Developers, Support Teams understand the application without diving deep into the technical aspects.
+
+Q #12) What is the limit for the maximum number of scenarios that can be included in the feature file?
+
+Answer: A feature file can contain a maximum of 10 scenarios, but the number can vary from project to project and from one organization to another. But it is generally advisable to limit the number of scenarios included in the feature file.
+
+Q #13) What is the use of Background keyword in Cucumber?
+
+Answer: Background keyword is used to group multiple given statements into a single group. This is generally used when the same set of given statements are repeated in each scenario of the feature file.
+
+Q #14) What symbol is used for parameterization in Cucumber?
+
+Answer: Pipe symbol (|) is used to specify one or more parameter values in a feature file.
+
+Q #15) What is the purpose of Examples keyword in Cucumber?
+
+Ans: Examples keyword is used to specify values for each parameter used in the scenario. Scenario Outline keyword must always be followed by the keyword Examples.
+
+Q #16) What is the file extension for a feature file?
+
+Answer: File Extension for a feature file is .feature. A feature file is ideally written in a notepad file and is saved with the extension feature.
+
+Q #17) Provide an example of a step definition file in Cucumber.
+
+Answer: Step definition corresponding to the step “Open Chrome browser and launch the application” may look like the code mentioned below:
+
+@Given("^Open Chrome browser and launch the application$")
+public void openBrowser()
+
+{
+driver = new ChromeDriver();
+driver.manage().window().maximize();
+driver.get("www.facebook.com");
+}
+Q #18) What is the purpose of the Cucumber Options tag?
+
+Answer: Cucumber Options tag is used to provide a link between the feature files and step definition files. Each step of the feature file is mapped to a corresponding method on the step definition file.
+
+Below is the syntax of Cucumber Options tag:
+
+@CucumberOptions(features="Features",glue={"StepDefinition"})
+Q #19) How can Cucumber be integrated with Selenium WebDriver?
+
+Answer: Cucumber can be integrated with the Selenium Webdriver by downloading the necessary JAR files.
+
+Given below are the list of JAR files that are to be downloaded for using Cucumber with Selenium web driver:
+
+cucumber-core-1.2.2.jar
+cucumber-java-1.2.2.jar
+cucumber-junit-1.2.2.jar
+cucumber-jvm-deps-1.0.3.jar
+cucumber-reporting-0.1.0.jar
+gherkin-2.12.2.jar
+Q #20) When is Cucumber used in real-time?
+
+Answer: Cucumber tool is generally used in real-time to write acceptance tests for an application. It is generally used by non-technical people such as Business Analysts, Functional Testers, etc.
+
+Q #21) Provide an example of Background keyword in Cucumber.
+
+Answer:
+
+Background: Given the user is on the application login page.
+
+Q #22) What is the use of Behavior Driven Development in Agile methodology?
+
+Answer: The advantages of Behavior Driven Development are best realized when non-technical users such as Business Analysts use BDD to draft requirements and provide the same to the developers for implementation.
+
+In Agile methodology, user stories can be written in the format of feature file and the same can be taken up for implementation by the developers.
+
+Q #23) Explain the purpose of keywords that are used for writing a scenario in Cucumber.
+
+Answer:
+
+“Given” keyword is used to specify a precondition for the scenario.
+“When” keyword is used to specify an operation to be performed.
+“Then” keyword is used to specify the expected result of a performed action.
+“And” keyword is used to join one or more statements together into a single statement.
+Q #24) What is the name of the plugin that is used to integrate Eclipse with Cucumber?
+
+Answer: Cucumber Natural Plugin is the plugin that is used to integrate Eclipse with Cucumber.
+
+Q #25) What is the meaning of the TestRunner class in Cucumber?
+
+Answer: TestRunner class is used to provide the link between the feature file and the step definition file. The next question provides a sample representation of how the TestRunner class will look like. A TestRunner class is generally an empty class with no class definition.
+
+Q #26) Provide an example of the TestRunner class in Cucumber.
+
+Answer:
+
+Package com.sample.TestRunner
+
+importorg.junit.runner.RunWith; 
+importcucumber.api.CucumberOptions; 
+importcucumber.api.junit.Cucumber;
+
+@RunWith(Cucumber.class) 
+@CucumberOptions(features="Features",glue={"StepDefinition"}) 
+public class Runner 
+{
+}
+Q #27) What is the starting point of execution for feature files?
+
+Answer: When integrated with Selenium, the starting point of execution must be from the TestRunner class.
+
+Q #28) Should any code be written within the TestRunner class?
+
+Answer: No code should be written under the TestRunner class. It should include the tags @RunWith and @CucumberOptions.
+
+Q #29) What is the use of features property under the Cucumber Options tag?
+
+Answer: Features property is used to let the Cucumber framework identify the location of the feature files.
+
+Q #30) What is the use of glue property under the Cucumber Options tag?
+
+Answer: Glue property is used to let the Cucumber framework identify the location of step definition files.
+
+Q #31) What is the maximum number of steps that are to be written within a scenario?
+
+Answer: 3-4 steps.
+
+Q 32) What are hooks
+--------------------
+Ans - Block of code that run before ot after each scenario
+Hooks in Cucumber are like Listners in TestNG
+Can define hooks by using annotations @Before @After
+
+Scenario Hooks - Runs before and after each scenario
+Step Hook - Runs before and after each step
+Conditional Hook - Runs associated with tags or conditional execution.
